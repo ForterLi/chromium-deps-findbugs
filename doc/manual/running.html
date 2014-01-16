@@ -200,4 +200,10 @@ These options are only accepted by the Text User Interface.
     Set the auxiliary classpath for analysis.  This classpath should include all
     jar files and directories containing classes that are part of the program
     being analyzed but you do not want to have analyzed for bugs.
+    </p></dd><dt><span class="term"><span class="command"><strong>-userPrefs</strong></span> <em class="replaceable"><code>edu.umd.cs.findbugs.core.prefs</code></em></span></dt><dd><p>
+    Set the path of the user preferences file to use, which might override some of the options abobe.
+    Specifying <code class="literal">userPrefs</code> as first argument would mean some later
+    options will override them, as last argument would mean they will override some previous options).
+    This rationale behind this option is to reuse FindBugs Eclipse project settings for command
+    line execution.
     </p></dd></dl></div></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="building.html">Prev</a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="gui.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter&nbsp;3.&nbsp;Building <span class="application">FindBugs</span>&#8482; from Source&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;5.&nbsp;Using the <span class="application">FindBugs</span> GUI</td></tr></table></div></body></html>
