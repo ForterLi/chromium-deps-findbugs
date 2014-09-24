@@ -200,6 +200,15 @@ These options are only accepted by the Text User Interface.
     Set the auxiliary classpath for analysis.  This classpath should include all
     jar files and directories containing classes that are part of the program
     being analyzed but you do not want to have analyzed for bugs.
+    </p></dd><dt><span class="term"><span class="command"><strong>-auxclasspathFromInput</strong></span> </span></dt><dd><p>
+    Read the auxiliary classpath for analysis from standard input, each line adds new
+    entry to the auxiliary classpath for analysis.
+    </p></dd><dt><span class="term"><span class="command"><strong>-auxclasspathFromFile</strong></span> <em class="replaceable"><code>filepath</code></em></span></dt><dd><p>
+    Read the auxiliary classpath for analysis from file, each line adds new
+    entry to the auxiliary classpath for analysis.
+    </p></dd><dt><span class="term"><span class="command"><strong>-analyzeFromFile</strong></span> <em class="replaceable"><code>filepath</code></em></span></dt><dd><p>
+    Read the files to analyze from file, each line adds new
+    entry to the classpath for analysis.
     </p></dd><dt><span class="term"><span class="command"><strong>-userPrefs</strong></span> <em class="replaceable"><code>edu.umd.cs.findbugs.core.prefs</code></em></span></dt><dd><p>
     Set the path of the user preferences file to use, which might override some of the options abobe.
     Specifying <code class="literal">userPrefs</code> as first argument would mean some later

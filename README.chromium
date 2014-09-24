@@ -1,7 +1,7 @@
 Name: FindBugs
 URL: http://findbugs.sourceforge.net/
 Description: FindBugs is a program to find bugs in Java programs.
-Version: 2.0.3
+Version: 3.0.0
 Security Critical: no
 License: LGPL 3
 License File: LICENSE

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-                    "file:../etc/docbook/docbookx.dtd" [
+                    "../../etc/docbook/docbookx.dtd" [
 <!ENTITY FindBugs "<application>FindBugs</application>">
 <!ENTITY Ant "<application>Ant</application>">
 <!ENTITY Saxon "<application>Saxon</application>">
@@ -44,9 +44,9 @@ The name FindBugs and the FindBugs logo are trademarked by the University of Mar
 </para>
 </legalnotice>
 
-<edition>2.0.3</edition>
+<edition>3.0.0</edition>
 
-<pubdate>17:16:15 EST, 22 November, 2013</pubdate>
+<pubdate>20:25:27 CDT, 06 July, 2014</pubdate>
 
 </bookinfo>
 
@@ -62,7 +62,7 @@ The name FindBugs and the FindBugs logo are trademarked by the University of Mar
 <para> &FindBugs;&trade; is a program to find bugs in Java programs.  It looks for instances
 of "bug patterns" --- code instances that are likely to be errors.</para>
 
-<para> This document describes version 2.0.3 of &FindBugs;.We
+<para> This document describes version 3.0.0 of &FindBugs;.We
 are very interested in getting your feedback on &FindBugs;. Please visit
 the <ulink url="http://findbugs.sourceforge.net">&FindBugs; web page</ulink> for
 the latest information on &FindBugs;, contact information, and support resources such
@@ -100,31 +100,31 @@ This chapter explains how to install &FindBugs;.
 <para>
 The easiest way to install &FindBugs; is to download a binary distribution.
 Binary distributions are available in
-<ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-2.0.3.tar.gz?download">gzipped tar format</ulink> and
-<ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-2.0.3.zip?download">zip format</ulink>.
+<ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.0.tar.gz?download">gzipped tar format</ulink> and
+<ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.0.zip?download">zip format</ulink>.
 Once you have downloaded a binary distribution, extract it into a directory of your choice.
 </para>
 
 <para>
 Extracting a gzipped tar format distribution:
 <screen>
-<prompt>$ </prompt><command>gunzip -c findbugs-2.0.3.tar.gz | tar xvf -</command>
+<prompt>$ </prompt><command>gunzip -c findbugs-3.0.0.tar.gz | tar xvf -</command>
 </screen>
 </para>
 
 <para>
 Extracting a zip format distribution:
 <screen>
-<prompt>C:\Software></prompt><command>unzip findbugs-2.0.3.zip</command>
+<prompt>C:\Software></prompt><command>unzip findbugs-3.0.0.zip</command>
 </screen>
 </para>
 
 <para>
 Usually, extracting a binary distribution will create a directory ending in
-<filename class="directory">findbugs-2.0.3</filename>. For example, if you extracted
+<filename class="directory">findbugs-3.0.0</filename>. For example, if you extracted
 the binary distribution from the <filename class="directory">C:\Software</filename>
 directory, then the &FindBugs; software will be extracted into the directory
-<filename class="directory">C:\Software\findbugs-2.0.3</filename>.
+<filename class="directory">C:\Software\findbugs-3.0.0</filename>.
 This directory is the &FindBugs; home directory.  We'll refer to it as
 &FBHome; (or &FBHomeWin; for Windows) throughout this manual.
 </para>
@@ -155,7 +155,7 @@ To compile &FindBugs; from source, you will need the following:
 <itemizedlist>
   <listitem>
     <para>
-      The <ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-2.0.3-source.zip?download"
+      The <ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.0-source.zip?download"
       >&FindBugs; source distribution</ulink>
     </para>
   </listitem>
@@ -218,7 +218,7 @@ After you download the source distribution, you'll need to extract it into
 a working directory.  A typical command to do this is:
 
 <screen>
-<prompt>$ </prompt><command>unzip findbugs-2.0.3-source.zip</command>
+<prompt>$ </prompt><command>unzip findbugs-3.0.0-source.zip</command>
 </screen>
 
 </para>
@@ -939,6 +939,36 @@ These options are only accepted by the Text User Interface.
   </varlistentry>
 
   <varlistentry>
+  <term><command>-auxclasspathFromInput</command> </term>
+  <listitem>
+    <para>
+    Read the auxiliary classpath for analysis from standard input, each line adds new
+    entry to the auxiliary classpath for analysis.
+    </para>
+  </listitem>
+  </varlistentry>
+
+  <varlistentry>
+  <term><command>-auxclasspathFromFile</command> <replaceable>filepath</replaceable></term>
+  <listitem>
+    <para>
+    Read the auxiliary classpath for analysis from file, each line adds new
+    entry to the auxiliary classpath for analysis.
+    </para>
+  </listitem>
+  </varlistentry>
+
+  <varlistentry>
+  <term><command>-analyzeFromFile</command> <replaceable>filepath</replaceable></term>
+  <listitem>
+    <para>
+    Read the files to analyze from file, each line adds new
+    entry to the classpath for analysis.
+    </para>
+  </listitem>
+  </varlistentry>
+
+  <varlistentry>
   <term><command>-userPrefs</command> <replaceable>edu.umd.cs.findbugs.core.prefs</replaceable></term>
   <listitem>
     <para>
@@ -1416,8 +1446,19 @@ using the &FindBugs; task.
     <term><literal>omitVisitors</literal></term>
     <listitem>
        <para>
-       Optional attribute.  It is like the <literal>visitors</literal> attribute,
+       Optional attribute. It specifies a comma-separated list of bug detectors.
+       It is like the <literal>visitors</literal> attribute,
        except it specifies detectors which will <emphasis>not</emphasis> be run.
+       </para>
+    </listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><literal>chooseVisitors</literal></term>
+    <listitem>
+       <para>
+       Optional attribute. It specifies a comma-separated list of bug detectors
+       prefixed with "+" or "-" to selectively enable/disable them.
        </para>
     </listitem>
   </varlistentry>
@@ -1539,6 +1580,17 @@ using the &FindBugs; task.
       </listitem>
   </varlistentry>
 
+  <varlistentry>
+      <term><literal>nested</literal></term>
+      <listitem>
+          <para>
+              Optional attribute which enables or disables scanning of nested jar and zip files found in
+                the list of files and directories to be analyzed.
+                By default, scanning of nested jar/zip files is enabled.
+          </para>
+      </listitem>
+  </varlistentry>
+
 </variablelist>
 
 
@@ -1565,7 +1617,7 @@ using the &FindBugs; task.
 The FindBugs Eclipse plugin allows &FindBugs; to be used within
 the <ulink url="http://www.eclipse.org/">Eclipse</ulink> IDE.
 The FindBugs Eclipse plugin was generously contributed by Peter Friese.
-Phil Crosby and Andrei Loskutov contributed major improvements
+Phil Crosby and Andrey Loskutov contributed major improvements
 to the plugin.
 </para>
 
@@ -1617,10 +1669,10 @@ and JRE/JDK 1.5 or later.
 
 <para>You can also manually
 download the plugin from the following link:
-<ulink url="http://prdownloads.sourceforge.net/findbugs/edu.umd.cs.findbugs.plugin.eclipse_2.0.3.20131122.zip?download"
->http://prdownloads.sourceforge.net/findbugs/edu.umd.cs.findbugs.plugin.eclipse_2.0.3.20131122.zip?download</ulink>.
+<ulink url="http://prdownloads.sourceforge.net/findbugs/edu.umd.cs.findbugs.plugin.eclipse_3.0.0.20140706.zip?download"
+>http://prdownloads.sourceforge.net/findbugs/edu.umd.cs.findbugs.plugin.eclipse_3.0.0.20140706.zip?download</ulink>.
 Extract it in Eclipse's "plugins" subdirectory.
-(So &lt;eclipse_install_dir&gt;/plugins/edu.umd.cs.findbugs.plugin.eclipse_2.0.3.20131122/findbugs.png
+(So &lt;eclipse_install_dir&gt;/plugins/edu.umd.cs.findbugs.plugin.eclipse_3.0.0.20140706/findbugs.png
 should be the path to the &FindBugs; logo.)
 
 </para>
@@ -1694,7 +1746,7 @@ Options you may choose include:
 <title>Extending the Eclipse Plugin (since 2.0.0)</title>
 <para>
 Eclipse plugin supports contribution of custom &FindBugs; detectors (see also
-<ulink url="http://code.google.com/p/findbugs/source/browse/trunk/findbugs/src/doc/AddingDetectors.txt">AddingDetectors.txt</ulink>
+<ulink url="http://code.google.com/p/findbugs/source/browse/findbugs/src/doc/AddingDetectors.txt">AddingDetectors.txt</ulink>
 for more information). There are two ways to contribute custom plugins to the Eclipse:
 </para>
 <itemizedlist>
@@ -1705,7 +1757,7 @@ for more information). There are two ways to contribute custom plugins to the Ec
         <guimenu>Window</guimenu>
         <guimenuitem>Preferences</guimenuitem>
         <guimenuitem>Java</guimenuitem>
-        <guimenuitem>&FindBugs;</guimenuitem>
+        <guimenuitem>FindBugs</guimenuitem>
         <guimenuitem>Misc. Settings</guimenuitem>
         <guimenuitem>Custom Detectors</guimenuitem>
     </menuchoice>.
@@ -1727,7 +1779,7 @@ for more information). There are two ways to contribute custom plugins to the Ec
 
     <para>
     Please check the documentation of the
-    <ulink url="http://code.google.com/p/findbugs/source/browse/trunk/eclipsePlugin/schema/detectorPlugins.exsd">
+    <ulink url="http://code.google.com/p/findbugs/source/browse/eclipsePlugin/schema/detectorPlugins.exsd">
     findBugsEclipsePlugin/schema/detectorPlugins.exsd</ulink>
     extension point how to update the plugin.xml. Existing &FindBugs; detector plugins can
     be easily "extended" to be full featured &FindBugs; AND Eclipse detector plugins.
@@ -1743,7 +1795,7 @@ for more information). There are two ways to contribute custom plugins to the Ec
     Eclipse plugin. You can do this even for third-party detector packages.
     Another major differentiator is the ability to extend the default FindBugs
     classpath at runtime with required third party libraries (see
-    <ulink url="http://code.google.com/p/findbugs/source/browse/trunk/findbugs/src/doc/AddingDetectors.txt">AddingDetectors.txt</ulink>
+    <ulink url="http://code.google.com/p/findbugs/source/browse/findbugs/src/doc/AddingDetectors.txt">AddingDetectors.txt</ulink>
     for more information).
     </para>
   </listitem>
@@ -1952,6 +2004,17 @@ In other words, each of the children must be true for the predicate to be true.
  </varlistentry>
 
  <varlistentry>
+   <term><literal>&lt;Source&gt;</literal></term>
+    <listitem>
+        <para>
+            This element matches warnings associated with a particular source file. The
+            <literal>name</literal> attribute is used to specify the exact or regex match pattern
+            for the source file name.
+        </para>
+    </listitem>
+ </varlistentry>
+
+ <varlistentry>
    <term><literal>&lt;Method&gt;</literal></term>
 
    <listitem><para>This element specifies a method.  The <literal>name</literal> is used to specify
@@ -1996,8 +2059,8 @@ In other words, each of the children must be true for the predicate to be true.
    <term><literal>&lt;And&gt;</literal></term>
     <listitem><para>
    This element combines <literal>Match</literal> clauses which both must evaluate to true.  I.e., you can put
-   <literal>Bug</literal> and <literal>Priority</literal> elements in an <literal>And</literal> clause in order
-   to match specific bugs with given priority only.
+   <literal>Bug</literal> and <literal>Confidence</literal> elements in an <literal>And</literal> clause in order
+   to match specific bugs with given confidence only.
    </para></listitem>
  </varlistentry>
  <varlistentry>
@@ -2016,8 +2079,9 @@ In other words, each of the children must be true for the predicate to be true.
 <title>Java element name matching</title>
 
 <para>
-If the <literal>name</literal> attribute of <literal>Class</literal>, <literal>Method</literal> or
-<literal>Field</literal> starts with the ~ character the rest of attribute content is interpreted as
+If the <literal>name</literal> attribute of <literal>Class</literal>, <literal>Source</literal>,
+<literal>Method</literal> or <literal>Field</literal> starts with the ~ character
+the rest of attribute content is interpreted as
 a Java regular expression that is matched against the names of the Java element in question.
 </para>
 
@@ -2259,6 +2323,21 @@ as expected.
 </programlisting>
 </para>
 
+<para>
+  12. Full exclusion filter file to match all classes generated from Groovy source files.
+
+<programlisting>
+<![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+<Match>
+    <Source name="~.*\.groovy" />
+</Match>
+</FindBugsFilter>
+]]>
+</programlisting>
+</para>
+
 </sect1>
 
 <sect1>
@@ -2461,7 +2540,9 @@ files in the classpath while compiling your program.
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.CheckForNull</command></term>
     <listitem>
-<command>[Target]</command> Field, Method, Parameter
+    <para>
+        <command>[Target]</command> Field, Method, Parameter
+    </para>
     </listitem>
     <listitem>
       <para>
@@ -2474,7 +2555,9 @@ When this annotation is applied to a method it applies to the method return valu
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.CheckReturnValue</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Method, Constructor
+    </para>
     </listitem>
     <listitem>
       <variablelist>
@@ -2503,7 +2586,9 @@ This annotation is used to denote a method whose return value should always be c
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.DefaultAnnotation</command></term>
     <listitem>
-      <command>[Target]</command> Type, Package
+      <para>
+        <command>[Target]</command> Type, Package
+      </para>
     </listitem>
     <listitem>
       <variablelist>
@@ -2536,7 +2621,9 @@ on those parameters, methods or fields that you want to allow to be null.
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.DefaultAnnotationForFields</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Type, Package
+    </para>
     </listitem>
     <listitem>
       <variablelist>
@@ -2565,7 +2652,9 @@ This is same as the DefaultAnnotation except it only applys to fields.
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.DefaultAnnotationForMethods</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Type, Package
+    </para>
     </listitem>
     <listitem>
       <variablelist>
@@ -2594,7 +2683,9 @@ This is same as the DefaultAnnotation except it only applys to methods.
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.DefaultAnnotationForParameters</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Type, Package
+    </para>
     </listitem>
     <listitem>
       <variablelist>
@@ -2623,7 +2714,9 @@ This is same as the DefaultAnnotation except it only applys to method parameters
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.NonNull</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Field, Method, Parameter
+    </para>
     </listitem>
     <listitem>
       <para>
@@ -2636,7 +2729,9 @@ Annotated fields must not be null after construction has completed. Annotated me
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.Nullable</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Field, Method, Parameter
+    </para>
     </listitem>
     <listitem>
       <para>
@@ -2646,7 +2741,7 @@ acceptable and whether it is neccessary to check for a null value.  FindBugs wil
 treat the annotated items as though they had no annotation.
       </para>
       <para>
-In pratice this annotation is useful only for overriding an overarching NonNull
+In practice this annotation is useful only for overriding an overarching NonNull
 annotation.
       </para>
     </listitem>
@@ -2655,7 +2750,9 @@ annotation.
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.OverrideMustInvoke</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Method
+    </para>
     </listitem>
     <listitem>
       <variablelist>
@@ -2693,7 +2790,9 @@ This annotation is deprecated. Use CheckForNull instead.
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.SuppressWarnings</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Type, Field, Method, Parameter, Constructor, Package
+    </para>
     </listitem>
     <listitem>
       <variablelist>
@@ -2728,7 +2827,9 @@ are encouraged to cooperate to ensure that the same names work across multiple c
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.UnknownNullness</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Field, Method, Parameter
+    </para>
     </listitem>
     <listitem>
       <para>
@@ -2740,7 +2841,9 @@ Used to indicate that the nullness of the target is unknown, or my vary in unkno
   <varlistentry>
     <term><command>edu.umd.cs.findbugs.annotations.UnknownNullness</command></term>
     <listitem>
+    <para>
       <command>[Target]</command> Field, Method, Parameter
+    </para>
     </listitem>
     <listitem>
       <para>
@@ -2753,10 +2856,10 @@ Used to indicate that the nullness of the target is unknown, or my vary in unkno
 <para>
  &FindBugs; also supports the following annotations:
 <itemizedlist>
-  <listitem>net.jcip.annotations.GuardedBy</listitem>
-  <listitem>net.jcip.annotations.Immutable</listitem>
-  <listitem>net.jcip.annotations.NotThreadSafe</listitem>
-  <listitem>net.jcip.annotations.ThreadSafe</listitem>
+  <listitem><para>net.jcip.annotations.GuardedBy</para></listitem>
+  <listitem><para>net.jcip.annotations.Immutable</para></listitem>
+  <listitem><para>net.jcip.annotations.NotThreadSafe</para></listitem>
+  <listitem><para>net.jcip.annotations.ThreadSafe</para></listitem>
 </itemizedlist>
 </para>
 <para>
@@ -3766,8 +3869,8 @@ contributed the string concatenation detector.</para>
 <para>Thomas Klaeger contributed a number of bug fixes and
 bug detector improvements.</para>
 
-<para>Andrei Loskutov made a number of improvements to the
-Eclipse plugin.</para>
+<para>Andrey Loskutov made a number of bug fixes and
+bug detector improvements. He is maintainer of the Eclipse plugin.</para>
 
 <para>Brian Goetz contributed a major refactoring of the
 visitor classes to improve readability and understandability.</para>
