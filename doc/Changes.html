@@ -45,7 +45,7 @@
 <tr><td>&nbsp;</td></tr>
 
 <tr><td><b>Development</b></td></tr> 
-<tr><td><font size="-1">&nbsp;<a class="sidebar" href="http://sourceforge.net/tracker/?group_id=96405">Open bugs</a></font></td></tr> 
+<tr><td><font size="-1">&nbsp;<a class="sidebar" href="http://sourceforge.net/p/findbugs/bugs/">Open bugs</a></font></td></tr> 
 <tr><td><font size="-1">&nbsp;<a class="sidebar" href="reportingBugs.html">Reporting bugs</a></font></td></tr> 
 <tr><td><font size="-1">&nbsp;<a class="sidebar" href="contributing.html">Contributing</a></font></td></tr> 
 <tr><td><font size="-1">&nbsp;<a class="sidebar" href="team.html">Dev team</a></font></td></tr> 
@@ -60,6 +60,156 @@
             <td align="left" valign="top">
 
 
+                <h1>FindBugs Change Log, Version 3.0.1</h1>
+                <ul>
+                    <li>New Bug patterns:
+<ul>
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#BSHIFT_WRONG_ADD_PRIORITY">BSHIFT_WRONG_ADD_PRIORITY</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#CO_COMPARETO_INCORRECT_FLOATING">CO_COMPARETO_INCORRECT_FLOATING</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#DC_PARTIALLY_CONSTRUCTED">DC_PARTIALLY_CONSTRUCTED</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOXED_PRIMITIVE_FOR_COMPARE">DM_BOXED_PRIMITIVE_FOR_COMPARE</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_INVALID_MIN_MAX">DM_INVALID_MIN_MAX</a>,
+<li>
+                                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#ME_MUTABLE_ENUM_FIELD">ME_MUTABLE_ENUM_FIELD</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#ME_ENUM_FIELD_SETTER">ME_ENUM_FIELD_SETTER</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#MS_MUTABLE_COLLECTION">MS_MUTABLE_COLLECTION</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#MS_MUTABLE_COLLECTION_PKGPROTECT">MS_MUTABLE_COLLECTION_PKGPROTECT</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#RANGE_ARRAY_INDEX">RANGE_ARRAY_INDEX</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#RANGE_ARRAY_OFFSET">RANGE_ARRAY_OFFSET</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#RANGE_ARRAY_LENGTH">RANGE_ARRAY_LENGTH</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#RANGE_STRING_INDEX">RANGE_STRING_INDEX</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT">RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_CONDITION">UC_USELESS_CONDITION</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_CONDITION_TYPE">UC_USELESS_CONDITION_TYPE</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_OBJECT">UC_USELESS_OBJECT</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_OBJECT_STACK">UC_USELESS_OBJECT_STACK</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a>
+	            </ul>
+                    </li>
+                    <li>Improved Bug patterns:
+			<ul>
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#RpC_REPEATED_CONDITIONAL_TEST">RpC_REPEATED_CONDITIONAL_TEST</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#DMI_HARDCODED_ABSOLUTE_FILENAME">DMI_HARDCODED_ABSOLUTE_FILENAME</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#DMI_EMPTY_DB_PASSWORD">DMI_EMPTY_DB_PASSWORD</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#DMI_CONSTANT_DB_PASSWORD">DMI_CONSTANT_DB_PASSWORD</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#PT_ABSOLUTE_PATH_TRAVERSAL">PT_ABSOLUTE_PATH_TRAVERSAL</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#PT_RELATIVE_PATH_TRAVERSAL">PT_RELATIVE_PATH_TRAVERSAL</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE">SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING">SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING</a>
+	</ul>
+                    </li>
+                    <li> Bug patterns under evaluation:
+<ul>
+<li>
+                     <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#CAA_COVARIANT_ARRAY_FIELD">CAA_COVARIANT_ARRAY_FIELD</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#CAA_COVARIANT_ARRAY_RETURN">CAA_COVARIANT_ARRAY_RETURN</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#CAA_COVARIANT_ARRAY_LOCAL">CAA_COVARIANT_ARRAY_LOCAL</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#CAA_COVARIANT_ARRAY_ELEMENT_STORE">CAA_COVARIANT_ARRAY_ELEMENT_STORE</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#IIL_PREPARE_STATEMENT_IN_LOOP">IIL_PREPARE_STATEMENT_IN_LOOP</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#IIL_PATTERN_COMPILE_IN_LOOP">IIL_PATTERN_COMPILE_IN_LOOP</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#IIL_PATTERN_COMPILE_IN_LOOP_INDIRECT">IIL_PATTERN_COMPILE_IN_LOOP_INDIRECT</a>,
+<li>
+                        <a
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#IIL_ELEMENTS_GET_LENGTH_IN_LOOP">IIL_ELEMENTS_GET_LENGTH_IN_LOOP</a>,
+</ul>
+
+				</li>
+
+               <!--
+                    <li>Fixed false positives for the following bug patterns (XXX occurrences in findbugsTestCases):
+                        <ul>
+                            <li><a
+                                href="http://findbugs.sourceforge.net/bugDescriptions.html#XXX">XXX</a>
+                        </ul>
+                    </li>
+
+                    <li>Fixed false negatives for the following bug patterns (XXX occurrences in findbugsTestCases):
+                        <ul>
+                            <li><a
+                                href="http://findbugs.sourceforge.net/bugDescriptions.html#XXX">XXX</a>
+                        </ul>
+                    </li>
+               -->
+
+                    <li>Various bug fixes, also many patches from community. Thanks for your contributions!
+                    </li>
+                </ul>
+
                 <h1>FindBugs Change Log, Version 3.0.0</h1>
                 <ul>
                     <li>FindBugs supports Java 8 now (both as runtime and target platform).
@@ -72,7 +222,7 @@
                         <a
                         href="http://findbugs.sourceforge.net/bugDescriptions.html#IIO_INEFFICIENT_INDEX_OF">IIO_INEFFICIENT_INDEX_OF</a>,
                         <a
-                        href="http://findbugs.sourceforge.net/bugDescriptions.html#IIO_INEFFICIENT_LAST_INDEX_OF">IIO_INEFFICIENT_LAST_INDEX_OF</a>
+                        href="http://findbugs.sourceforge.net/bugDescriptions.html#IIO_INEFFICIENT_LAST_INDEX_OF">IIO_INEFFICIENT_LAST_INDEX_OF</a>,
                         <a
                         href="http://findbugs.sourceforge.net/bugDescriptions.html#CNT_ROUGH_CONSTANT_VALUE">CNT_ROUGH_CONSTANT_VALUE</a>
                     </li>
@@ -2853,7 +3003,7 @@ document.write( "Last updated "+ document.lastModified + "." );
 </script> 
 <p> Send comments to <a class="sidebar" href="mailto:findbugs@cs.umd.edu">findbugs@cs.umd.edu</a> 
 <p> 
-<A href="http://sourceforge.net"><IMG src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A>
+<a href="http://sourceforge.net/projects/findbugs/"><img src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="FindBugs on SourceForge.net" /></a>
 
             </td>
 

@@ -36,9 +36,9 @@
 <para>名称「FindBugs」および FindBugs のロゴは、メリーランド大学の登録商標です。</para>
 </legalnotice>
 
-<edition>3.0.0</edition>
+<edition>3.0.1</edition>
 
-<pubdate>20:25:27 CDT, 06 July, 2014 (翻訳 2014年7月)</pubdate>
+<pubdate>12:37:51 EST, 06 March, 2015 (翻訳 2014年7月)</pubdate>
 
 </bookinfo>
 
@@ -53,7 +53,7 @@
 
 <para>&FindBugs;&trade; は、Java プログラムの中のバグを見つけるプログラムです。このプログラムは、「バグ パターン」の実例を探します。「バグ パターン」とは、エラーとなる可能性の高いコードの事例です。</para>
 
-<para>この文書は、&FindBugs; バージョン 3.0.0 について説明してます。私たちは、 &FindBugs; に対するフィードバックを心待ちにしています。どうぞ、 <ulink url="http://findbugs.sourceforge.net">&FindBugs; Web ページ</ulink> にアクセスしてください。&FindBugs; についての最新情報、連絡先および &FindBugs; メーリングリストなどのサポート情報を入手することができます。</para>
+<para>この文書は、&FindBugs; バージョン 3.0.1 について説明してます。私たちは、 &FindBugs; に対するフィードバックを心待ちにしています。どうぞ、 <ulink url="http://findbugs.sourceforge.net">&FindBugs; Web ページ</ulink> にアクセスしてください。&FindBugs; についての最新情報、連絡先および &FindBugs; メーリングリストなどのサポート情報を入手することができます。</para>
 
 <sect1>
 <title>必要条件</title>
@@ -78,19 +78,19 @@
 <sect1>
 <title>配布物の展開</title>
 
-<para>&FindBugs; をインストールする最も簡単な方法は、バイナリ配布物をダウンロードすることです。 バイナリ配布物は、 <ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.0.tar.gz?download">gzipped tar 形式</ulink> および <ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.0.zip?download">zip 形式</ulink> がそれぞれ入手可能です。バイナリ配布物をダウンロードしてきたら、それを任意のディレクトリーに展開します。</para>
+<para>&FindBugs; をインストールする最も簡単な方法は、バイナリ配布物をダウンロードすることです。 バイナリ配布物は、 <ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.1.tar.gz?download">gzipped tar 形式</ulink> および <ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.1.zip?download">zip 形式</ulink> がそれぞれ入手可能です。バイナリ配布物をダウンロードしてきたら、それを任意のディレクトリーに展開します。</para>
 
 <para>gzipped tar 形式配布物の展開方法例:<screen>
-<prompt>$ </prompt><command>gunzip -c findbugs-3.0.0.tar.gz | tar xvf -</command>
+<prompt>$ </prompt><command>gunzip -c findbugs-3.0.1.tar.gz | tar xvf -</command>
 </screen>
 </para>
 
 <para>zip 形式配布物の展開方法例:<screen>
-<prompt>C:\Software&gt;</prompt><command>unzip findbugs-3.0.0.zip</command>
+<prompt>C:\Software&gt;</prompt><command>unzip findbugs-3.0.1.zip</command>
 </screen>
 </para>
 
-<para>バイナリ配布物の展開すると、通常は <filename class="directory">findbugs-3.0.0</filename> ディレクトリーが作成されます。例えば、ディレクトリー <filename class="directory">C:\Software</filename> でバイナリ配布物を展開すると、ディレクトリー <filename class="directory">C:\Software\findbugs-3.0.0</filename> に &FindBugs; は展開されます。このディレクトリーが &FindBugs; のホームディレクトリーになります。このマニュアルでは、このホームディレクトリーを &FBHome; (Windowsでは &FBHomeWin;) を用いて参照します。</para>
+<para>バイナリ配布物の展開すると、通常は <filename class="directory">findbugs-3.0.1</filename> ディレクトリーが作成されます。例えば、ディレクトリー <filename class="directory">C:\Software</filename> でバイナリ配布物を展開すると、ディレクトリー <filename class="directory">C:\Software\findbugs-3.0.1</filename> に &FindBugs; は展開されます。このディレクトリーが &FindBugs; のホームディレクトリーになります。このマニュアルでは、このホームディレクトリーを &FBHome; (Windowsでは &FBHomeWin;) を用いて参照します。</para>
 </sect1>
 
 </chapter>
@@ -111,7 +111,7 @@
 
 <para>ソースから &FindBugs; をコンパイルするためには、以下のものが必要です。<itemizedlist>
   <listitem>
-    <para><ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.0-source.zip?download">&FindBugs; のソース配布物</ulink>
+    <para><ulink url="http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.1-source.zip?download">&FindBugs; のソース配布物</ulink>
     </para>
   </listitem>
   <listitem>
@@ -151,7 +151,7 @@
 <sect1>
 <title>ソース配布物の展開</title>
 <para>ソース配布物をダウンロードした後に、それを作業用ディレクトリーに展開する必要があります。通常は、次のようなコマンドで展開を行います:<screen>
-<prompt>$ </prompt><command>unzip findbugs-3.0.0-source.zip</command>
+<prompt>$ </prompt><command>unzip findbugs-3.0.1-source.zip</command>
 </screen>
 
 </para>
@@ -1122,7 +1122,7 @@ Phil Crosby 氏 と Andrey Loskutov 氏は、プラグインの重要な改良�
     </varlistentry>
     </variablelist>
 
-<para>また、次に示すリンクから手動でプラグインをダウンロードすることもできます : <ulink url="http://prdownloads.sourceforge.net/findbugs/edu.umd.cs.findbugs.plugin.eclipse_3.0.0.20140706.zip?download">http://prdownloads.sourceforge.net/findbugs/edu.umd.cs.findbugs.plugin.eclipse_3.0.0.20140706.zip?download</ulink>. 展開して Eclipse の「plugins」サブディレクトリーに入れてください。(そうすると、 &lt;eclipse インストールディレクトリー &gt;/plugins/edu.umd.cs.findbugs.plugin.eclipse_3.0.0.20140706/findbugs.png が &FindBugs; のロゴファイルへのパスになるはずです。)</para>
+<para>また、次に示すリンクから手動でプラグインをダウンロードすることもできます : <ulink url="http://prdownloads.sourceforge.net/findbugs/edu.umd.cs.findbugs.plugin.eclipse_3.0.1.20150306.zip?download">http://prdownloads.sourceforge.net/findbugs/edu.umd.cs.findbugs.plugin.eclipse_3.0.1.20150306.zip?download</ulink>. 展開して Eclipse の「plugins」サブディレクトリーに入れてください。(そうすると、 &lt;eclipse インストールディレクトリー &gt;/plugins/edu.umd.cs.findbugs.plugin.eclipse_3.0.1.20150306/findbugs.png が &FindBugs; のロゴファイルへのパスになるはずです。)</para>
 
 <para>プラグインの展開ができたら、 Eclipse を起動して <menuchoice> <guimenu>Help</guimenu> <guimenuitem>About Eclipse Platform</guimenuitem> <guimenuitem>Plug-in Details</guimenuitem> </menuchoice> を選択してください。「FindBugs Project」から提供された「FindBugs Plug-in」というプラグインがあることを確認してください。</para>
 </sect1>

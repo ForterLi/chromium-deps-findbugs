@@ -1,5 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head><title>FindBugs Bug Descriptions</title>
+<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>FindBugs Bug Descriptions</title>
 <link rel="stylesheet" type="text/css" href="findbugs.css"/>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head><body>
@@ -39,7 +40,7 @@
 <tr><td>&nbsp;</td></tr>
 
 <tr><td><b>Development</b></td></tr> 
-<tr><td><font size="-1">&nbsp;<a class="sidebar" href="http://sourceforge.net/tracker/?group_id=96405">Open bugs</a></font></td></tr> 
+<tr><td><font size="-1">&nbsp;<a class="sidebar" href="http://sourceforge.net/p/findbugs/bugs/">Open bugs</a></font></td></tr> 
 <tr><td><font size="-1">&nbsp;<a class="sidebar" href="reportingBugs.html">Reporting bugs</a></font></td></tr> 
 <tr><td><font size="-1">&nbsp;<a class="sidebar" href="contributing.html">Contributing</a></font></td></tr> 
 <tr><td><font size="-1">&nbsp;<a class="sidebar" href="team.html">Dev team</a></font></td></tr> 
@@ -53,7 +54,7 @@
 <td align="left" valign="top">
 <h1>FindBugs Bug Descriptions</h1>
 <p>This document lists the standard bug patterns reported by
-<a href="http://findbugs.sourceforge.net">FindBugs</a> version 3.0.0.</p>
+<a href="http://findbugs.sourceforge.net">FindBugs</a> version 3.0.1.</p>
 <h2>Summary</h2>
 <table width="100%">
 <tr bgcolor="#b9b9fe"><th>Description</th><th>Category</th></tr>
@@ -64,6 +65,8 @@
 <tr bgcolor="#eeeeee"><td><a href="#CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE">CN: Cloneable を実装していないクラスが clone メソッドを定義している</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#CNT_ROUGH_CONSTANT_VALUE">CNT: 既知の定数の雑な値を見つける</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#CO_ABSTRACT_SELF">Co: 抽象クラスは共変な compareTo メソッドを定義している</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#CO_COMPARETO_INCORRECT_FLOATING">Co: compareTo()/compare() は間違って float または double 値を処理する</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#CO_COMPARETO_RESULTS_MIN_VALUE">Co: compareTo()/compare() は Integer.MIN_VALUE を返す</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#CO_SELF_NO_OBJECT">Co: 共変な compareTo メソッドの定義</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#DE_MIGHT_DROP">DE: 例外を捨てているかもしれないメソッド</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#DE_MIGHT_IGNORE">DE: 例外を無視しているかもしれないメソッド</a></td><td>Bad practice</td></tr>
@@ -99,6 +102,8 @@
 <tr bgcolor="#ffffff"><td><a href="#IT_NO_SUCH_ELEMENT">It: Iterator.next() が NoSuchElementException をスローできない</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#J2EE_STORE_OF_NON_SERIALIZABLE_OBJECT_INTO_SESSION">J2EE: HttpSession への非直列化可能オブジェクトの格納</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#JCIP_FIELD_ISNT_FINAL_IN_IMMUTABLE_CLASS">JCIP: 不変クラスのフィールドは final にすべき</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ME_ENUM_FIELD_SETTER">ME: public 列挙型メソッドが無条件にフィールドを設定するPublic enum method unconditionally sets its field</a></td><td>Bad practice</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ME_MUTABLE_ENUM_FIELD">ME: 列挙型フィールドは public で可変である</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#NP_BOOLEAN_RETURN_NULL">NP: 戻り型が Boolean のメソッドが明示的に null を返している</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#NP_CLONE_COULD_RETURN_NULL">NP: null を返すかもしれない clone メソッド</a></td><td>Bad practice</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT">NP: equals メソッドは null の引数をチェックしていない</a></td><td>Bad practice</td></tr>
@@ -152,25 +157,25 @@
 <tr bgcolor="#eeeeee"><td><a href="#BIT_IOR_OF_SIGNED_BYTE">BIT: 符号付きバイト値のビット論理和</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#BIT_SIGNED_CHECK_HIGH_BIT">BIT: ビット演算の符号をチェックする</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#BOA_BADLY_OVERRIDDEN_ADAPTER">BOA: スーパークラスの Adapter で実装されるメソッドを誤ってオーバーライドしているクラス</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#ICAST_BAD_SHIFT_AMOUNT">BSHIFT: 32ビット int の-31から31の範囲を超えた量によるシフト</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR">Bx: プリミティブ値が3項演算子のためにアンボクシングされて、型変換される</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#CO_COMPARETO_RESULTS_MIN_VALUE">Co: compareTo()/compare() は Integer.MIN_VALUE を返す</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DLS_DEAD_LOCAL_INCREMENT_IN_RETURN">DLS: return 文に役に立たないインクリメントがある</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DLS_DEAD_STORE_OF_CLASS_LITERAL">DLS: クラスリテラルの無効な代入</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DLS_OVERWRITTEN_INCREMENT">DLS: 上書きされたインクリメント</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DMI_ARGUMENTS_WRONG_ORDER">DMI: 逆にされた引数</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DMI_BAD_MONTH">DMI: 月のための間違った定数値</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DMI_BIGDECIMAL_CONSTRUCTED_FROM_DOUBLE">DMI: 正確に表されない double から構築された BigDecimal</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DMI_CALLING_NEXT_FROM_HASNEXT">DMI: hasNext メソッドで next メソッドを呼び出している</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DMI_COLLECTIONS_SHOULD_NOT_CONTAIN_THEMSELVES">DMI: コレクションは自分自身を含めるべきではない</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DMI_DOH">DMI: D'oh! 無意味なメソッド呼び出し</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DMI_INVOKING_HASHCODE_ON_ARRAY">DMI: 配列で hashCode メソッドを呼び出している</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DMI_LONG_BITS_TO_DOUBLE_INVOKED_ON_INT">DMI: int に対して Double.longBitsToDouble() を呼び出している</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DMI_VACUOUS_SELF_COLLECTION_CALL">DMI: コレクションへの無意味な呼び出し</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DMI_ANNOTATION_IS_NOT_VISIBLE_TO_REFLECTION">Dm: ランタイムリテンションなしで、アノテーションの存在を調べるためにリフレクションを使用することはできない</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DMI_FUTILE_ATTEMPT_TO_CHANGE_MAXPOOL_SIZE_OF_SCHEDULED_THREAD_POOL_EXECUTOR">Dm: ScheduledThreadPoolExecutor の最大プールサイズを変えようとする無駄な試み</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DMI_SCHEDULED_THREAD_POOL_EXECUTOR_WITH_ZERO_CORE_THREADS">Dm: コアプールサイズが0の ScheduledThreadPoolExecutor の作成</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DMI_VACUOUS_CALL_TO_EASYMOCK_METHOD">Dm: EasyMock メソッドへの役に立たない/無意味な呼び出し</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BSHIFT_WRONG_ADD_PRIORITY">BSHIFT: シフト演算の正しくない構文解析の可能性がある</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ICAST_BAD_SHIFT_AMOUNT">BSHIFT: 32ビット int の-31から31の範囲を超えた量によるシフト</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DLS_DEAD_LOCAL_INCREMENT_IN_RETURN">DLS: return 文に無駄なインクリメントがある</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DLS_DEAD_STORE_OF_CLASS_LITERAL">DLS: クラスリテラルの無効な代入</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DLS_OVERWRITTEN_INCREMENT">DLS: 上書きされたインクリメント</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_ARGUMENTS_WRONG_ORDER">DMI: 逆にされた引数</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_BAD_MONTH">DMI: 月のための間違った定数値</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_BIGDECIMAL_CONSTRUCTED_FROM_DOUBLE">DMI: 正確に表されない double から構築された BigDecimal</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_CALLING_NEXT_FROM_HASNEXT">DMI: hasNext メソッドで next メソッドを呼び出している</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_COLLECTIONS_SHOULD_NOT_CONTAIN_THEMSELVES">DMI: コレクションは自分自身を含めるべきではない</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_DOH">DMI: D'oh! 無意味なメソッド呼び出し</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_INVOKING_HASHCODE_ON_ARRAY">DMI: 配列で hashCode メソッドを呼び出している</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_LONG_BITS_TO_DOUBLE_INVOKED_ON_INT">DMI: int に対して Double.longBitsToDouble() を呼び出している</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_VACUOUS_SELF_COLLECTION_CALL">DMI: コレクションへの無意味な呼び出し</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_ANNOTATION_IS_NOT_VISIBLE_TO_REFLECTION">Dm: ランタイムリテンションなしで、アノテーションの存在を調べるためにリフレクションを使用することはできない</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_FUTILE_ATTEMPT_TO_CHANGE_MAXPOOL_SIZE_OF_SCHEDULED_THREAD_POOL_EXECUTOR">Dm: ScheduledThreadPoolExecutor の最大プールサイズを変えようとする無駄な試み</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_SCHEDULED_THREAD_POOL_EXECUTOR_WITH_ZERO_CORE_THREADS">Dm: コアプールサイズが0の ScheduledThreadPoolExecutor の作成</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_VACUOUS_CALL_TO_EASYMOCK_METHOD">Dm: EasyMock メソッドへの役に立たない/無意味な呼び出し</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_INVALID_MIN_MAX">Dm: Math.max と Math.min の間違った組み合わせ</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#EC_ARRAY_AND_NONARRAY">EC: equals メソッドを使用して配列と非配列を比較している</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#EC_BAD_ARRAY_COMPARE">EC: 配列の equals メソッド呼び出しは == と等価である</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#EC_INCOMPATIBLE_ARRAY_COMPARE">EC: equals(...) メソッドを使用して互換性のない配列を比較している</a></td><td>Correctness</td></tr>
@@ -212,7 +217,7 @@
 <tr bgcolor="#eeeeee"><td><a href="#IL_INFINITE_RECURSIVE_LOOP">IL: 明らかな無限再帰ループ</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#IM_MULTIPLYING_RESULT_OF_IREM">IM: 整数剰余の結果の整数乗算</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#INT_BAD_COMPARISON_WITH_INT_VALUE">INT: int 値と long 定数との間違った比較</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">INT: 負でない値と負の定数との間違った比較</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">INT: 負でない値と負の定数またはゼロとの間違った比較</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#INT_BAD_COMPARISON_WITH_SIGNED_BYTE">INT: 符号付きバイトの間違った比較</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#IO_APPENDING_TO_OBJECT_OUTPUT_STREAM">IO: オブジェクト出力ストリームへの追加は失敗に終わる</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#IP_PARAMETER_IS_DEAD_BUT_OVERWRITTEN">IP: メソッドで読み取られずに上書きされているパラメータ</a></td><td>Correctness</td></tr>
@@ -226,7 +231,7 @@
 <tr bgcolor="#eeeeee"><td><a href="#NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH">NP: null 値を例外経路で利用することが保証されている</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR">NP: 非 null フィールドは初期化されていない</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#NP_NONNULL_PARAM_VIOLATION">NP: メソッド呼び出しは非 null パラメータに対して null を渡している</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#NP_NONNULL_RETURN_VIOLATION">NP: null を返すかもしれないメソッドが @NonNull 宣言されている</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_NONNULL_RETURN_VIOLATION">NP: null を返すかもしれないメソッドが @Nonnull 宣言されている</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#NP_NULL_INSTANCEOF">NP: null とわかっている値をその型のインスタンスなのか確かめている</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#NP_NULL_ON_SOME_PATH">NP: null 値を利用している可能性がある</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#NP_NULL_ON_SOME_PATH_EXCEPTION">NP: null 値を例外経路で利用している可能性がある</a></td><td>Correctness</td></tr>
@@ -234,17 +239,21 @@
 <tr bgcolor="#eeeeee"><td><a href="#NP_NULL_PARAM_DEREF_ALL_TARGETS_DANGEROUS">NP: メソッド呼び出しは非 null パラメータに対して null を渡している</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#NP_NULL_PARAM_DEREF_NONVIRTUAL">NP: 非 null パラメータに null を渡している非仮想メソッドの呼び出し</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#NP_OPTIONAL_RETURN_NULL">NP: Optional の戻り型を持つメソッドが明示的に null を返す</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#NP_STORE_INTO_NONNULL_FIELD">NP: @NonNull でアノテートされたフィールドに null を格納している</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NP_STORE_INTO_NONNULL_FIELD">NP: @Nonnull でアノテートされたフィールドに null を格納している</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#NP_UNWRITTEN_FIELD">NP: 書き込まれていないフィールドの読み出し</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#NM_BAD_EQUAL">Nm: クラスは equal(Object) を定義しています。equals(Object) にすべきですか?</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#NM_LCASE_HASHCODE">Nm: クラスは hashcode() を定義しています。hashCode() にすべきですか?</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#NM_LCASE_TOSTRING">Nm: クラスは tostring() を定義しています。toString() にすべきですか?</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#NM_METHOD_CONSTRUCTOR_CONFUSION">Nm: 明らかなメソッドとコンストラクタの混乱</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#NM_VERY_CONFUSING">Nm: 非常に紛らわしい名前のメソッド</a></td><td>Correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#NM_WRONG_PACKAGE">Nm: パラメータの間違ったパッケージのために、スーパークラスのメソッドをオーバーライドしていないメソッド</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NM_WRONG_PACKAGE">Nm: パラメータの間違ったパッケージのためにスーパークラスのメソッドをオーバーライドしていないメソッド</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#QBA_QUESTIONABLE_BOOLEAN_ASSIGNMENT">QBA: 論理式で boolean リテラル値を代入しているメソッド</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RANGE_ARRAY_INDEX">RANGE: 配列インデックスは範囲外</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RANGE_ARRAY_LENGTH">RANGE: 配列の長さは範囲外</a></td><td>Correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RANGE_ARRAY_OFFSET">RANGE: 配列オフセットは範囲外</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RANGE_STRING_INDEX">RANGE: 文字列インデックスは範囲外</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#RC_REF_COMPARISON">RC: 疑わしい参照比較</a></td><td>Correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE">RCN: すでに利用していた値の null チェック</a></td><td>Correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE">RCN: 既に利用していた値の null チェック</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#RE_BAD_SYNTAX_FOR_REGULAR_EXPRESSION">RE: 正規表現のための無効な構文</a></td><td>Correctness</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#RE_CANT_USE_FILE_SEPARATOR_AS_REGULAR_EXPRESSION">RE: 正規表現のために使われている File.separator</a></td><td>Correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#RE_POSSIBLE_UNINTENDED_PATTERN">RE: 正規表現のために使われている "." または "|"</a></td><td>Correctness</td></tr>
@@ -297,10 +306,12 @@
 <tr bgcolor="#ffffff"><td><a href="#EI_EXPOSE_REP2">EI2: 可変オブジェクトへの参照を取り込むことによって内部表現を暴露するかもしれないメソッド</a></td><td>Malicious code vulnerability</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#FI_PUBLIC_SHOULD_BE_PROTECTED">FI: ファイナライザは public ではなく protected にすべき</a></td><td>Malicious code vulnerability</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#EI_EXPOSE_STATIC_REP2">MS: static フィールドに可変オブジェクトを格納することによって、内部の静的状態を暴露するかもしれないメソッド</a></td><td>Malicious code vulnerability</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#MS_CANNOT_BE_FINAL">MS: final でないフィールドは悪質なコードから保護できない</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MS_CANNOT_BE_FINAL">MS: final でないフィールドは悪意のあるコードから保護できない</a></td><td>Malicious code vulnerability</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#MS_EXPOSE_REP">MS: 配列を返すことによって内部表現を暴露するかもしれない public static メソッド</a></td><td>Malicious code vulnerability</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#MS_FINAL_PKGPROTECT">MS: final かつパッケージプロテクテッドにすべきフィールド</a></td><td>Malicious code vulnerability</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#MS_MUTABLE_ARRAY">MS: 可変配列のフィールド</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MS_MUTABLE_COLLECTION">MS: 可変コレクションのフィールド</a></td><td>Malicious code vulnerability</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MS_MUTABLE_COLLECTION_PKGPROTECT">MS: パッケージプロテクテッドにすべき可変コレクションのフィールド</a></td><td>Malicious code vulnerability</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#MS_MUTABLE_HASHTABLE">MS: 可変 Hashtable のフィールド</a></td><td>Malicious code vulnerability</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#MS_OOI_PKGPROTECT">MS: インタフェースから移動してパッケージプロテクテッドにすべきフィールド</a></td><td>Malicious code vulnerability</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#MS_PKGPROTECT">MS: パッケージプロテクテッドにすべきフィールド</a></td><td>Malicious code vulnerability</td></tr>
@@ -308,69 +319,69 @@
 <tr bgcolor="#eeeeee"><td><a href="#MS_SHOULD_BE_REFACTORED_TO_BE_FINAL">MS: final でないフィールドはリファクタリングするべき</a></td><td>Malicious code vulnerability</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#AT_OPERATION_SEQUENCE_ON_CONCURRENT_ABSTRACTION">AT: 並行抽象の呼び出しシーケンスはアトミックではないかもしれない</a></td><td>Multithreaded correctness</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#DC_DOUBLECHECK">DC: フィールドのダブルチェックの可能性</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DL_SYNCHRONIZATION_ON_BOOLEAN">DL: Boolean の同期化</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DL_SYNCHRONIZATION_ON_BOXED_PRIMITIVE">DL: デッドロックの原因になる可能性があるボクシングされたプリミティブ型の同期化</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DL_SYNCHRONIZATION_ON_SHARED_CONSTANT">DL: 正準化した文字列の同期化</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DL_SYNCHRONIZATION_ON_UNSHARED_BOXED_PRIMITIVE">DL: ボクシングされたプリミティブ値の同期化</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DM_MONITOR_WAIT_ON_CONDITION">Dm: Condition で wait メソッドを呼び出している</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DM_USELESS_THREAD">Dm: デフォルトの空の run メソッドを使用して作成されたスレッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#ESync_EMPTY_SYNC">ESync: 空の synchronized ブロック</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#IS2_INCONSISTENT_SYNC">IS: 一貫性のない同期化</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#IS_FIELD_NOT_GUARDED">IS: 並行アクセスに対してガードされていないフィールド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#JLM_JSR166_LOCK_MONITORENTER">JLM: Lock で同期化している</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#JLM_JSR166_UTILCONCURRENT_MONITORENTER">JLM: java.util.concurrent のインスタンスで同期化している</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#JML_JSR166_CALLING_WAIT_RATHER_THAN_AWAIT">JLM: util.concurrent 抽象でモニタスタイルの wait メソッドを使用している</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#LI_LAZY_INIT_STATIC">LI: static フィールドの間違った遅延初期化</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#LI_LAZY_INIT_UPDATE_STATIC">LI: 更新される static フィールドの間違った遅延初期化</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#ML_SYNC_ON_FIELD_TO_GUARD_CHANGING_THAT_FIELD">ML: フィールドを同期化でガードしようとする無駄な試み</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#ML_SYNC_ON_UPDATED_FIELD">ML: 更新されるフィールドで同期化しているメソッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#MSF_MUTABLE_SERVLET_FIELD">MSF: 可変サーブレットフィールド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#MWN_MISMATCHED_NOTIFY">MWN: 不整合な notify メソッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#MWN_MISMATCHED_WAIT">MWN: 不整合な wait メソッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#NN_NAKED_NOTIFY">NN: 裸の notify メソッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#NP_SYNC_AND_NULL_CHECK_FIELD">NP: 同じフィールドでの同期化と null チェック</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#NO_NOTIFY_NOT_NOTIFYALL">No: notifyAll メソッドではなく notify メソッドを使用している</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#RS_READOBJECT_SYNC">RS: readObject メソッドを同期化しているクラス</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#RV_RETURN_VALUE_OF_PUTIFABSENT_IGNORED">RV: putIfAbsent の戻り値は無視されて putIfAbsent に渡した値は再利用された</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#RU_INVOKE_RUN">Ru: スレッドで run メソッドを呼び出している</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#SC_START_IN_CTOR">SC: Thread.start() を呼び出しているコンストラクタ</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#SP_SPIN_ON_FIELD">SP: スピンロックをしているメソッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#STCAL_INVOKE_ON_STATIC_CALENDAR_INSTANCE">STCAL: static Calendar の呼び出し</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#STCAL_INVOKE_ON_STATIC_DATE_FORMAT_INSTANCE">STCAL: static DateFormat の呼び出し</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#STCAL_STATIC_CALENDAR_INSTANCE">STCAL: static Calendar フィールド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#STCAL_STATIC_SIMPLE_DATE_FORMAT_INSTANCE">STCAL: static DateFormat</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#SWL_SLEEP_WITH_LOCK_HELD">SWL: ロックを保持して Thread.sleep() を呼び出しているメソッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#TLW_TWO_LOCK_WAIT">TLW: 2つ以上のロックを保持して wait メソッドを呼び出している</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#UG_SYNC_SET_UNSYNC_GET">UG: 同期化していない get メソッド、同期化している set メソッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#UL_UNRELEASED_LOCK">UL: すべての経路でロックが解除されないメソッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#UL_UNRELEASED_LOCK_EXCEPTION_PATH">UL: すべての例外経路でロックが解除されないメソッド</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#UW_UNCOND_WAIT">UW: wait メソッドの無条件呼び出し</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#VO_VOLATILE_INCREMENT">VO: volatile フィールドへのインクリメントはアトミックではない</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#VO_VOLATILE_REFERENCE_TO_ARRAY">VO: 配列への volatile 参照は、配列要素を volatile として扱わない</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#WL_USING_GETCLASS_RATHER_THAN_CLASS_LITERAL">WL: クラスリテラルではなく getClass で同期化している</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#WS_WRITEOBJECT_SYNC">WS: writeObject メソッドは同期化しているがその他のメソッドは同期化していないクラス</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#WA_AWAIT_NOT_IN_LOOP">Wa: Condition.await() がループの中にない</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#WA_NOT_IN_LOOP">Wa: wait メソッドがループの中にない</a></td><td>Multithreaded correctness</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#BX_BOXING_IMMEDIATELY_UNBOXED">Bx: プリミティブ値がボクシングされて、すぐにアンボクシングされる</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#BX_BOXING_IMMEDIATELY_UNBOXED_TO_PERFORM_COERCION">Bx: プリミティブ値がプリミティブ型の型変換をするためにボクシングされて、アンボクシングされる</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DC_PARTIALLY_CONSTRUCTED">DC: 部分的に初期化されたオブジェクトを暴露する可能性がある</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DL_SYNCHRONIZATION_ON_BOOLEAN">DL: Boolean の同期化</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DL_SYNCHRONIZATION_ON_BOXED_PRIMITIVE">DL: デッドロックの原因になる可能性があるボクシングされたプリミティブ型の同期化</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DL_SYNCHRONIZATION_ON_SHARED_CONSTANT">DL: 正準化した文字列の同期化</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DL_SYNCHRONIZATION_ON_UNSHARED_BOXED_PRIMITIVE">DL: ボクシングされたプリミティブ値の同期化</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_MONITOR_WAIT_ON_CONDITION">Dm: Condition で wait メソッドを呼び出している</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_USELESS_THREAD">Dm: デフォルトの空の run メソッドを使用して作成されたスレッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ESync_EMPTY_SYNC">ESync: 空の synchronized ブロック</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#IS2_INCONSISTENT_SYNC">IS: 一貫性のない同期化</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#IS_FIELD_NOT_GUARDED">IS: 並行アクセスに対してガードされていないフィールド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#JLM_JSR166_LOCK_MONITORENTER">JLM: Lock で同期化している</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#JLM_JSR166_UTILCONCURRENT_MONITORENTER">JLM: java.util.concurrent のインスタンスで同期化している</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#JML_JSR166_CALLING_WAIT_RATHER_THAN_AWAIT">JLM: util.concurrent 抽象でモニタスタイルの wait メソッドを使用している</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#LI_LAZY_INIT_STATIC">LI: static フィールドの間違った遅延初期化</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#LI_LAZY_INIT_UPDATE_STATIC">LI: 更新される static フィールドの間違った遅延初期化</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#ML_SYNC_ON_FIELD_TO_GUARD_CHANGING_THAT_FIELD">ML: フィールドを同期化でガードしようとする無駄な試み</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ML_SYNC_ON_UPDATED_FIELD">ML: 更新されるフィールドで同期化しているメソッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MSF_MUTABLE_SERVLET_FIELD">MSF: 可変サーブレットフィールド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#MWN_MISMATCHED_NOTIFY">MWN: 不整合な notify メソッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#MWN_MISMATCHED_WAIT">MWN: 不整合な wait メソッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NN_NAKED_NOTIFY">NN: 裸の notify メソッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#NP_SYNC_AND_NULL_CHECK_FIELD">NP: 同じフィールドでの同期化と null チェック</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#NO_NOTIFY_NOT_NOTIFYALL">No: notifyAll メソッドではなく notify メソッドを使用している</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RS_READOBJECT_SYNC">RS: readObject メソッドを同期化しているクラス</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_RETURN_VALUE_OF_PUTIFABSENT_IGNORED">RV: putIfAbsent の戻り値は無視されて putIfAbsent に渡した値は再利用された</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#RU_INVOKE_RUN">Ru: スレッドで run メソッドを呼び出している</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SC_START_IN_CTOR">SC: Thread.start() を呼び出しているコンストラクタ</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SP_SPIN_ON_FIELD">SP: スピンロックをしているメソッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#STCAL_INVOKE_ON_STATIC_CALENDAR_INSTANCE">STCAL: static Calendar の呼び出し</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#STCAL_INVOKE_ON_STATIC_DATE_FORMAT_INSTANCE">STCAL: static DateFormat の呼び出し</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#STCAL_STATIC_CALENDAR_INSTANCE">STCAL: static Calendar フィールド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#STCAL_STATIC_SIMPLE_DATE_FORMAT_INSTANCE">STCAL: static DateFormat</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SWL_SLEEP_WITH_LOCK_HELD">SWL: ロックを保持して Thread.sleep() を呼び出しているメソッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#TLW_TWO_LOCK_WAIT">TLW: 2つ以上のロックを保持して wait メソッドを呼び出している</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UG_SYNC_SET_UNSYNC_GET">UG: 同期化していない get メソッド、同期化している set メソッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UL_UNRELEASED_LOCK">UL: すべての経路でロックが解除されないメソッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UL_UNRELEASED_LOCK_EXCEPTION_PATH">UL: すべての例外経路でロックが解除されないメソッド</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UW_UNCOND_WAIT">UW: wait メソッドの無条件呼び出し</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#VO_VOLATILE_INCREMENT">VO: volatile フィールドへのインクリメントはアトミックではない</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#VO_VOLATILE_REFERENCE_TO_ARRAY">VO: 配列への volatile 参照は、配列要素を volatile として扱わない</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#WL_USING_GETCLASS_RATHER_THAN_CLASS_LITERAL">WL: クラスリテラルではなく getClass で同期化している</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#WS_WRITEOBJECT_SYNC">WS: writeObject メソッドは同期化しているがその他のメソッドは同期化していないクラス</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#WA_AWAIT_NOT_IN_LOOP">Wa: Condition.await() がループの中にない</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#WA_NOT_IN_LOOP">Wa: wait メソッドがループの中にない</a></td><td>Multithreaded correctness</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BX_BOXING_IMMEDIATELY_UNBOXED">Bx: プリミティブ値がボクシングされて、すぐにアンボクシングされる</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#BX_BOXING_IMMEDIATELY_UNBOXED_TO_PERFORM_COERCION">Bx: プリミティブ値がプリミティブ型の型変換をするためにボクシングされて、アンボクシングされる</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR">Bx: プリミティブ値が3項演算子のためにアンボクシングされて、型変換される</a></td><td>Performance</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#BX_UNBOXING_IMMEDIATELY_REBOXED">Bx: ボクシングされた値がアンボクシングされて、すぐに再ボクシングされる</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DM_BOXED_PRIMITIVE_FOR_PARSING">Bx: ボクシング/アンボクシングはプリミティブを解析する</a></td><td>Performance</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DM_BOXED_PRIMITIVE_TOSTRING">Bx: toString メソッドを呼び出すためにプリミティブ型のラッパクラスのインスタンスを作成している</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DM_FP_NUMBER_CTOR">Bx: 効率が悪い浮動小数点 Number コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DM_NUMBER_CTOR">Bx: 効率が悪い Number コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DMI_BLOCKING_METHODS_ON_URL">Dm: URL の equals メソッドと hashCode メソッドはブロックする</a></td><td>Performance</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DMI_COLLECTION_OF_URLS">Dm: URL の Map や Set はひどい性能になる可能性がある</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DM_BOOLEAN_CTOR">Dm: 効率が悪い Boolean コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DM_GC">Dm: 明示的なガベージコレクション</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DM_NEW_FOR_GETCLASS">Dm: クラスオブジェクトを得るためだけにインスタンスを作成しているメソッド</a></td><td>Performance</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DM_NEXTINT_VIA_NEXTDOUBLE">Dm: 整数の乱数を生成するためには nextDouble メソッド ではなく nextInt メソッドを使用する</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DM_STRING_CTOR">Dm: 効率が悪い new String(String) コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#DM_STRING_TOSTRING">Dm: String の toString メソッドを呼び出しているメソッド</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#DM_STRING_VOID_CTOR">Dm: 効率が悪い new String() コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#HSC_HUGE_SHARED_STRING_CONSTANT">HSC: 複数のクラスファイルにわたって複製されている巨大な文字列定数</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#IIO_INEFFICIENT_INDEX_OF">IIO: String.indexOf(String) の非効率的な使用</a></td><td>Performance</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#IIO_INEFFICIENT_LAST_INDEX_OF">IIO: String.lastIndexOf(String)　の非効率的な使用</a></td><td>Performance</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#ITA_INEFFICIENT_TO_ARRAY">ITA: 長さが0の配列の引数で toArray メソッドを使用しているメソッド</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_BOXED_PRIMITIVE_FOR_COMPARE">Bx: プリミティブが比較でボクシングされている</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_BOXED_PRIMITIVE_FOR_PARSING">Bx: ボクシング/アンボクシングはプリミティブを解析する</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_BOXED_PRIMITIVE_TOSTRING">Bx: toString メソッドを呼び出すためにプリミティブ型のラッパクラスのインスタンスを作成している</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_FP_NUMBER_CTOR">Bx: 効率が悪い浮動小数点 Number コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_NUMBER_CTOR">Bx: 効率が悪い Number コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DMI_BLOCKING_METHODS_ON_URL">Dm: URL の equals メソッドと hashCode メソッドはブロックする</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DMI_COLLECTION_OF_URLS">Dm: URL の Map や Set はひどい性能になる</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_BOOLEAN_CTOR">Dm: 効率が悪い Boolean コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_GC">Dm: 明示的なガベージコレクション</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_NEW_FOR_GETCLASS">Dm: クラスオブジェクトを得るためだけにインスタンスを作成しているメソッド</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_NEXTINT_VIA_NEXTDOUBLE">Dm: 整数の乱数を生成するためには nextDouble メソッド ではなく nextInt メソッドを使用する</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_STRING_CTOR">Dm: 効率が悪い new String(String) コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#DM_STRING_TOSTRING">Dm: String の toString メソッドを呼び出しているメソッド</a></td><td>Performance</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#DM_STRING_VOID_CTOR">Dm: 効率が悪い new String() コンストラクタを呼び出しているメソッド</a></td><td>Performance</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#HSC_HUGE_SHARED_STRING_CONSTANT">HSC: 複数のクラスファイルにわたって複製されている巨大な文字列定数</a></td><td>Performance</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC: ループの中で + を使用して文字列を連結しているメソッド</a></td><td>Performance</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#SIC_INNER_SHOULD_BE_STATIC">SIC: static 内部クラスにすべき</a></td><td>Performance</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#SIC_INNER_SHOULD_BE_STATIC_ANON">SIC: 名前付き static 内部クラスにリファクタリングできるかもしれない</a></td><td>Performance</td></tr>
@@ -387,7 +398,7 @@
 <tr bgcolor="#ffffff"><td><a href="#HRS_REQUEST_PARAMETER_TO_HTTP_HEADER">HRS: HTTP レスポンススプリッティング脆弱性</a></td><td>Security</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#PT_ABSOLUTE_PATH_TRAVERSAL">PT: サーブレットの絶対パストラバーサル</a></td><td>Security</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#PT_RELATIVE_PATH_TRAVERSAL">PT: サーブレットの相対パストラバーサル</a></td><td>Security</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE">SQL: SQL の Statement の  execute メソッドに定数でない文字列を渡している</a></td><td>Security</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE">SQL: SQL の Statement の  execute または addBatch メソッドに定数でない文字列を渡している</a></td><td>Security</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING">SQL: PreparedStatement が定数でない文字列から生成されている</a></td><td>Security</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#XSS_REQUEST_PARAMETER_TO_JSP_WRITER">XSS: 反射型クロスサイトスクリプティング脆弱性がある JSP</a></td><td>Security</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#XSS_REQUEST_PARAMETER_TO_SEND_ERROR">XSS: 反射型クロスサイトスクリプティング脆弱性がエラーページにあるサーブレット</a></td><td>Security</td></tr>
@@ -448,16 +459,22 @@
 <tr bgcolor="#eeeeee"><td><a href="#RV_REM_OF_HASHCODE">RV: ハッシュコードの剰余は負かもしれない</a></td><td>Dodgy code</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#RV_REM_OF_RANDOM_INT">RV: 符号付き32ビット整数の乱数の剰余</a></td><td>Dodgy code</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#RV_RETURN_VALUE_IGNORED_INFERRED">RV: メソッドは戻り値を無視しています、これは間違いではないですか?</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#SA_FIELD_DOUBLE_ASSIGNMENT">SA: フィールドの二重代入</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#SA_LOCAL_DOUBLE_ASSIGNMENT">SA: ローカル変数の二重代入</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#SA_LOCAL_SELF_ASSIGNMENT">SA: ローカル変数の自己代入</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#SF_SWITCH_FALLTHROUGH">SF: 1つの case が次の case へと通り抜ける switch 文を発見した</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#SF_SWITCH_NO_DEFAULT">SF: default がない switch 文を発見した</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST: インスタンスメソッドから static フィールドへの書き込み</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#SE_PRIVATE_READ_RESOLVE_NOT_INHERITED">Se: サブクラスで継承できない private な readResolve メソッド</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#SE_TRANSIENT_FIELD_OF_NONSERIALIZABLE_CLASS">Se: Serializable でないクラスの transient フィールド</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#ffffff"><td><a href="#TQ_EXPLICIT_UNKNOWN_SOURCE_VALUE_REACHES_ALWAYS_SINK">TQ: 値は型修飾子を必要としているが、不明としてマークされている</a></td><td>Dodgy code</td></tr>
-<tr bgcolor="#eeeeee"><td><a href="#TQ_EXPLICIT_UNKNOWN_SOURCE_VALUE_REACHES_NEVER_SINK">TQ: 値は型修飾子を必要としないが、不明としてマークされている</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT">RV: 副作用がないメソッドの戻り値は無視される</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SA_FIELD_DOUBLE_ASSIGNMENT">SA: フィールドの二重代入</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SA_LOCAL_DOUBLE_ASSIGNMENT">SA: ローカル変数の二重代入</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SA_LOCAL_SELF_ASSIGNMENT">SA: ローカル変数の自己代入</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SF_SWITCH_FALLTHROUGH">SF: 1つの case が次の case へと通り抜ける switch 文を発見した</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SF_SWITCH_NO_DEFAULT">SF: default がない switch 文を発見した</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST: インスタンスメソッドから static フィールドへの書き込み</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#SE_PRIVATE_READ_RESOLVE_NOT_INHERITED">Se: サブクラスで継承できない private な readResolve メソッド</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#SE_TRANSIENT_FIELD_OF_NONSERIALIZABLE_CLASS">Se: Serializable でないクラスの transient フィールド</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#TQ_EXPLICIT_UNKNOWN_SOURCE_VALUE_REACHES_ALWAYS_SINK">TQ: 値は型修飾子を必要としているが、不明としてマークされている</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#TQ_EXPLICIT_UNKNOWN_SOURCE_VALUE_REACHES_NEVER_SINK">TQ: 値は型修飾子を必要としないが、不明としてマークされている</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UC_USELESS_CONDITION">UC: 条件は効果がない</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UC_USELESS_CONDITION_TYPE">UC: 条件は変数型のために効果がない</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UC_USELESS_OBJECT">UC: 役に立たないオブジェクトを作成した</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#ffffff"><td><a href="#UC_USELESS_OBJECT_STACK">UC: 役に立たないオブジェクトをスタックで作成した</a></td><td>Dodgy code</td></tr>
+<tr bgcolor="#eeeeee"><td><a href="#UC_USELESS_VOID_METHOD">UC: 役に立たない空ではない void メソッド</a></td><td>Dodgy code</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#UCF_USELESS_CONTROL_FLOW">UCF: 役に立たない制御フロー</a></td><td>Dodgy code</td></tr>
 <tr bgcolor="#eeeeee"><td><a href="#UCF_USELESS_CONTROL_FLOW_NEXT_LINE">UCF: 次の行へ続くだけの役に立たない制御フロー</a></td><td>Dodgy code</td></tr>
 <tr bgcolor="#ffffff"><td><a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">UrF: 読み出されない public または protected フィールド</a></td><td>Dodgy code</td></tr>
@@ -483,7 +500,7 @@
 このメソッドは、<code>((event.detail &amp; SWT.SELECTED) &gt; 0)</code> のような式を比較しています。
 ビット演算をより大きい演算子で比較することは、予想外の結果 (もちろん、<code>SWT.SELECTED</code> の値による) の原因になる可能性があります。
 <code>SWT.SELECTED</code> が負数であるなら、これはバグの候補です。
-<code>SWT.SELECTED</code> が負ではないとしても、'&gt; 0' の代わりに '!= 0' を使うことは良いプラクティスと思われます。
+<code>SWT.SELECTED</code> が負ではないとしても、'&gt; 0' の代わりに '!= 0' を使用することは良いプラクティスと思われます。
 </p>
 <p>
 Boris Bokowski
@@ -524,7 +541,7 @@ Boris Bokowski
 
 
 <p>
-コードの明確さともっと良い正確さのために定義済みライブラリ定数を使うことを推奨します。
+コードの明確さともっと良い正確さのために定義済みライブラリ定数を使用することを推奨します。
 </p>
 
 
@@ -534,6 +551,27 @@ Boris Bokowski
 <p>
 このクラスは、共変な <code>compareTo</code> メソッドを定義しています。
 <code>Comparable</code> インタフェースの <code>compareTo</code> メソッドを正しく実装するためには <code>compareTo</code> メソッドのパラメータの型は、<code>java.lang.Object</code> でなければなりません。
+</p>
+
+    
+<h3><a name="CO_COMPARETO_INCORRECT_FLOATING">Co: compareTo()/compare() は間違って float または double 値を処理する (CO_COMPARETO_INCORRECT_FLOATING)</a></h3>
+
+
+<p>
+このメソッドはこのようなパターンを使用して double または float 値を比較しています ： val1 &gt; val2 ? 1 : val1 &lt; val2 ? -1 : 0。
+このパターンは  正しくないソート結果や壊れたコレクションの原因になるかもしれない -0.0 や NaN 値のために間違って働きます （もし比較された値がキーとして使われるなら）。
+すべての特殊なケースを正確に処理するために Double.compare または Float.compare メソッドの使用を検討してください。
+</p>
+
+    
+<h3><a name="CO_COMPARETO_RESULTS_MIN_VALUE">Co: compareTo()/compare() は Integer.MIN_VALUE を返す (CO_COMPARETO_RESULTS_MIN_VALUE)</a></h3>
+
+
+<p>
+いくつかの状況下では、この <code>compareTo</code> または <code>compare</code> メソッドは Integer.MIN_VALUE を返します。ひどいバッドプラクティスです。
+<code>compareTo</code> メソッドの戻り値で重要なことは結果の符号だけです。
+しかし、結果の符号を無効にすることを期待して、<code>compareTo</code> メソッドの戻り値を無効にすることがあります。
+返された値が Integer.MIN_VALUE の場合を除いてです。 Integer.MIN_VALUE よりも-1を返してください。
 </p>
 
     
@@ -551,7 +589,7 @@ Boris Bokowski
 
 <p>
 このメソッドは、例外を捨てているかもしれません。
-一般にキャッチした例外は何らかの方法で処理、または報告するべきです、あるいはメソッドからスローするべきです。
+一般的にキャッチした例外は何らかの方法で処理、または報告するべきです、またはメソッドからスローするべきです。
 </p>
 
     
@@ -560,7 +598,7 @@ Boris Bokowski
 
 <p>
 このメソッドは例外を無視しているかもしれません。
-一般に例外は何らかの方法で処理、または報告するべきです、あるいはメソッドからスローするべきです。
+一般的に例外は何らかの方法で処理、または報告するべきです、またはメソッドからスローするべきです。
 </p>
 
     
@@ -582,7 +620,7 @@ Java 1.6 の時点で、IdentityHashMap と EnumMap の両方がそうしまし�
 このコードは、<code>java.util.Random</code> オブジェクトを作成して1つの乱数を生成するために使用して捨てています。
 これはあまり良くない品質の乱数を作り出し、効率が悪いです。
 できれば、<code>Random</code> オブジェクトを1つだけ作成して保存されるようにコードを書き直してください。
-そして、新しい乱数が必要なたびに既存の <code>Random</code> オブジェクトでメソッドを呼び出してください。
+そして、毎回新しい乱数は既存の <code>Random</code> オブジェクトを呼び出して取得することが必要です。
 </p>
 <p>
 生成された乱数が推測可能でないことが重要なら、乱数ごとに新しい <code>Random</code> オブジェクトを作成してはいけません (値はあまりに簡単に推測可能です)。
@@ -605,7 +643,7 @@ Java 1.6 の時点で、IdentityHashMap と EnumMap の両方がそうしまし�
 <p>
 <code>System.exit(...)</code> を呼び出すことは、Java 仮想マシン全体をシャットダウンさせてしまいます。
 それが適切な場合にだけ使用するべきです。
-<code>System.exit(...)</code> の呼び出しはコードが他のコードによって呼び出されることを困難か不可能にします。
+<code>System.exit(...)</code> の呼び出しは、他のコードによる呼び出しを困難か不可能にします。
 その代わりに RuntimeException をスローすることを検討してください。
 </p>
 
@@ -625,7 +663,7 @@ Java ライブラリで最も危険なメソッドの1つです。 -- Joshua Blo
 <p>
 このコードは、参照等価性のために == や != を使用して <code>java.lang.String</code> パラメータを比較しています。
 文字列定数または正準化された文字列だけをメソッドに渡すことを呼び出し元に要求することは必要以上に脆弱で測定可能な性能の向上をもたらしません。
-その代わりに <code>equals(Object)</code> メソッドを使うことを検討してください。
+その代わりに <code>equals(Object)</code> メソッドを使用することを検討してください。
 </p>
 
     
@@ -635,7 +673,7 @@ Java ライブラリで最も危険なメソッドの1つです。 -- Joshua Blo
 <p>
 このコードは、参照等価性のために == や != を使用して <code>java.lang.String</code> オブジェクトを比較しています。
 両方の文字列がソースファイルの定数か、<code>String.intern()</code> を使用して正準化されていないかぎり、同じ文字列は2つの異なる String オブジェクトによって表されるかもしれません。
-その代わりに <code>equals(Object)</code> メソッドを使うことを検討してください。
+その代わりに <code>equals(Object)</code> メソッドを使用することを検討してください。
 </p>
 
     
@@ -665,7 +703,7 @@ public boolean equals(Object o) {
 }
 </pre></blockquote>
 <p>
-これは対称的で推移的である <code>equals</code> メソッドを実現するのはとても難しいので、間違ったプラクティスと見なされています。
+これは対称的で推移的である <code>equals</code> メソッドを実現するのはとても難しいので、バッドプラクティスと見なされています。
 プロパティがなければまったく予想していない振る舞いが起こりえます。
 </p>
 
@@ -675,7 +713,7 @@ public boolean equals(Object o) {
 
 <p>
 このクラスは、<code>compareTo(...)</code> メソッドを定義していますが、<code>equals</code> メソッドは <code>java.lang.Object</code> から継承しています。
-一般に、<code>equals</code> メソッドが true を返す場合に限り、<code>compareTo</code> メソッドは0を返すべきです。
+一般的に<code>equals</code> メソッドが true を返す場合に限り、<code>compareTo</code> メソッドは0を返すべきです。
 これが違反されるなら奇妙で予測できない失敗が PriorityQueue などのクラスで発生します。
 J2SE 5.0では、<code>PriorityQueue.remove()</code> は <code>compareTo</code> メソッドを使用しますが、Java SE 6では、<code>equals</code> メソッドを使用します。
 </p>
@@ -684,9 +722,9 @@ Comparable インタフェースの compareTo メソッドの JavaDoc を以下�
 </p>
 <blockquote><p>
 必須というわけではありませんが、<code>(x.compareTo(y)==0) == (x.equals(y))</code> であることが強く推奨されます。
-一般に、<code>Comparable</code> インタフェースを実装しているクラスで、この条件に違反するクラスは明確にこの事実を示す必要があります。
+一般的に<code>Comparable</code> インタフェースを実装しているクラスで、この条件に違反するクラスは明確にこの事実を示す必要があります。
 「注:このクラスは <code>equals</code> と一貫性のない自然順序付けを持ちます」などと明示することをお勧めします。
-</p></blockquote>
+</blockquote></p>
 
     
 <h3><a name="EQ_GETCLASS_AND_CLASS_CONSTANT">Eq: equals メソッドはサブタイプのために失敗する (EQ_GETCLASS_AND_CLASS_CONSTANT)</a></h3>
@@ -727,7 +765,7 @@ Comparable インタフェースの compareTo メソッドの JavaDoc を以下�
 参照によってつながった複数のオブジェクトがファイナライズ可能になると、Java 仮想マシンはすべてのオブジェクトの <code>finalize</code> メソッドを呼び出します。
 おそらく異なるスレッドで同時にです。
 したがって、クラス <i>X</i> の <code>finalize</code> メソッドの中から <i>X</i> によって参照されているオブジェクトの <code>finalize</code> メソッドを呼び出すのは、とりわけ間違った考えです。
-なぜなら、オブジェクトがすでに別のスレッドによってファイナライズされているかもしれないからです。 
+なぜなら、オブジェクトが既に別のスレッドによってファイナライズされているかもしれないからです。 
 </p>
 
     
@@ -746,7 +784,7 @@ Comparable インタフェースの compareTo メソッドの JavaDoc を以下�
 <p>
 このファイナライザは、フィールドを null にすること以外に何もしません。
 これはまったく無意味であり、オブジェクトがガベージされ、ファイナライズされ、再びガベージされることを要求しています。
-<code>finalize</code> メソッドを削除するべきです。
+<code>finalize</code> メソッドを除去するべきです。
 </p>
 
     
@@ -784,7 +822,7 @@ Comparable インタフェースの compareTo メソッドの JavaDoc を以下�
 
 <p>
 この書式文字列には改行文字 (\n) が含まれています。
-一般に書式文字列には %n を使用することがより望ましいです。%n は、プラットホーム特有の行セパレータを作り出します。
+一般的に書式文字列には %n を使用することがより望ましいです。%n は、プラットホーム特有の行セパレータを作り出します。
 </p>
 
   
@@ -793,7 +831,7 @@ Comparable インタフェースの compareTo メソッドの JavaDoc を以下�
 
 <p>
 総称型パラメータからの特定の型が予想される Object 型をコンパイルするとき、総称型コレクションメソッドへの呼び出しは引数を渡します。
-したがって、標準の Java 型システムも静的解析もパラメータとして渡されているオブジェクトが適切な型かどうかに関する有効な情報を提供できません。
+したがって、標準の Java 型システムも静的解析もパラメータとして渡されているオブジェクトが適切な型かどうかに関する有用な情報を提供できません。
 </p>
 
     
@@ -887,7 +925,7 @@ public class CircularClassInitialization {
 
 
 <p>
-<code>IllegalMonitorStateException</code> は、一般に設計上の欠陥 (ロックを保持していないオブジェクトで <code>wait</code> メソッドまたは <code>notify</code> メソッドを呼び出す) の場合にだけスローされます。
+<code>IllegalMonitorStateException</code> は、一般的に設計上の欠陥 (ロックを保持していないオブジェクトで <code>wait</code> メソッドまたは <code>notify</code> メソッドを呼び出す) の場合にだけスローされます。
 </p>
 
     
@@ -928,12 +966,34 @@ public class CircularClassInitialization {
 </p>
 
     
+<h3><a name="ME_ENUM_FIELD_SETTER">ME: public 列挙型メソッドが無条件にフィールドを設定するPublic enum method unconditionally sets its field (ME_ENUM_FIELD_SETTER)</a></h3>
+
+
+<p>
+無条件に列挙型フィールドを設定している public 列挙型で public メソッドを宣言しています。
+したがって、フィールドは悪意のあるコードや偶然別のパッケージによって変更できます。
+可変列挙型フィールドが遅延初期化で使用されるかもしれないとしても外界へ暴露するバッドプラクティスです。
+このメソッドを除去するかパッケージプライベートとして宣言することを考えてください。
+</p>
+
+    
+<h3><a name="ME_MUTABLE_ENUM_FIELD">ME: 列挙型フィールドは public で可変である (ME_MUTABLE_ENUM_FIELD)</a></h3>
+
+
+<p>
+可変 public フィールドが public 列挙型の中に定義されています。
+したがって、フィールドは悪意のあるコードや偶然別のパッケージによって変更できます。
+可変列挙型フィールドが遅延初期化で使用されるかもしれないとしても外界へ暴露するバッドプラクティスです。
+このメソッドを final およびパッケージプライベートとして宣言することを考えてください。
+</p>
+
+    
 <h3><a name="NP_BOOLEAN_RETURN_NULL">NP: 戻り型が Boolean のメソッドが明示的に null を返している (NP_BOOLEAN_RETURN_NULL)</a></h3>
 
 
 <p>
 Boolean.TRUE、Boolean.FALSE、null を返すメソッドはいつ事故が起きてもおかしくないです。
-まるで論理型の値を返すかのように、このメソッドは呼び出される可能性があります。
+このメソッドは、まるで論理型の値を返すかのように呼び出されます。
 コンパイラは Boolean 値のオートアンボクシングを挿入します。
 null 値が返されるなら NullPointerException が発生することになります。
 </p>
@@ -983,7 +1043,7 @@ null ではなく空の文字列または、いくつかの他の適切な文字
 
 <p>
 このクラスは、例外クラスから派生されていないのにクラス名が「Exception」で終わっています。
-これは、このクラスのユーザに紛らわしいです。
+これはこのクラスのユーザに紛らわしいです。
 </p>
 
     
@@ -1033,8 +1093,8 @@ final でないフィールドの名前は、最初の文字は小文字にし�
 
 
 <p>
-このクラスまたはインタフェースは、、インタフェースが異なるパッケージであるということを除いて実装された/拡張されたインタフェースと同一の単純名です (たとえば、<code>alpha.Foo</code> が <code>beta.Foo</code> を継承しているような状況です)。
-これは非常に紛らわしく、参照関係を解決するために import 文を見なければならなかったり、スーパークラスに存在するメソッドを誤ってオーバーライドしてしまったりする状況を作り出します。
+このクラスまたはインタフェースは、インタフェースが異なるパッケージであるということを除いて実装された/拡張されたインタフェースと同一の単純名です (たとえば、<code>alpha.Foo</code> が <code>beta.Foo</code> を継承しているような状況です)。
+これは非常に紛らわしく、参照関係を解決するために import 文を見なければならなかったり、スーパークラスのメソッドをオーバーライドしないで誤ってメソッドを定義する状況を作り出します。
 </p>
 
     
@@ -1043,7 +1103,7 @@ final でないフィールドの名前は、最初の文字は小文字にし�
 
 <p>
 このクラスは、スーパークラスが異なるパッケージであるということを除いて、スーパークラスと同一の単純名をです (たとえば、<code>alpha.Foo</code> が <code>beta.Foo</code> を拡張します)。
-これは非常に紛らわしく、参照関係を解決するために import 文を見なければならなかったり、スーパークラスに存在するメソッドを誤ってオーバーライドしてしまったりする状況を作り出します。
+これは非常に紛らわしく、参照関係を解決するために import 文を見なければならなかったり、スーパークラスのメソッドをオーバーライドしないで誤ってメソッドを定義する状況を作り出します。
 </p>
 
     
@@ -1054,7 +1114,7 @@ final でないフィールドの名前は、最初の文字は小文字にし�
 参照されたメソッドは、大文字の使い方だけによって異なる名前があります。
 大文字の使い方が同一ならメソッドの1つが他のメソッドをオーバーライドするので、非常に紛らわしいです。
 他のメソッドの存在から、これらのメソッドの両方の存在が意図的で、確実に混乱させていると思われます。
-APIの凍結によって両方とも持たざるを得ない場合を除き、それらのうちの1つを削除しようと努力するべきです。 
+APIの凍結によって両方とも持たざるを得ない場合を除き、それらのうちの1つを除去しようと努力するべきです。 
 </p>
 
     
@@ -1096,7 +1156,7 @@ public class B extends A {
 <p>
 このメソッドは、データベースリソース (たとえば、データベースコネクションや行セット) を作成していますが、どんなフィールドにも代入していないか、他のメソッドにも渡していないか、戻り値にもしていません。
 そして、メソッドからのすべての経路でオブジェクトをクローズするように見えません。
-メソッドからのすべての経路でデータベースリソースのクローズ失敗は良くない性能になるかもしれません。
+メソッドからのすべての経路でデータベースリソースのクローズが失敗すると性能低下になることがあります。
 データベースとの通信で問題があるアプリケーションの原因になる可能性があります。
 </p>
 
@@ -1107,7 +1167,7 @@ public class B extends A {
 <p>
 このメソッドは、データベースリソース (たとえば、データベースコネクションや行セット) を作成していますが、どんなフィールドにも代入していないか、他のメソッドにも渡していないか、戻り値にもしていません。
 そして、メソッドからのすべての例外経路でオブジェクトをクローズするように見えません。
-メソッドからのすべての経路でデータベースリソースのクローズ失敗は良くない性能になるかもしれません。
+メソッドからのすべての経路でデータベースリソースのクローズが失敗すると性能低下になることがあります。
 データベースとの通信で問題があるアプリケーションの原因になる可能性があります。
 </p>
 
@@ -1117,8 +1177,8 @@ public class B extends A {
 
 <p>
 このメソッドは、入出力ストリームオブジェクトを作成していますが、どんなフィールドにも代入していないしクローズするかもしれない別のメソッドにも渡していなくて、戻り値にしてもいません。そして、メソッドからのすべての経路でクローズするように見えません。
-これは、ファイルディスクリプタリークになるかもしれません。
-ストリームがクローズされることを確実にするために <code>finally</code> ブロックを使うことは、一般に良い考えです。
+これはファイルディスクリプタリークの原因になることがあります。
+ストリームがクローズされることを確実にするために <code>finally</code> ブロックを使用することは一般的に良い考えです。
 </p>
 
     
@@ -1127,8 +1187,8 @@ public class B extends A {
 
 <p>
 このメソッドは、入出力ストリームオブジェクトを作成していますが、どんなフィールドにも代入していないしクローズするかもしれない別のメソッドにも渡していないくて、戻り値にしてもいません。そして、メソッドからのすべての可能性がある例外経路でクローズするように見えません。
-これはファイルディスクリプターリークになるかもしれません。
-ストリームがクローズされることを確実にするために <code>finally</code> ブロックを使うことは、一般に良い考えです。
+これはファイルディスクリプターリークの原因になることがあります。
+ストリームがクローズされることを確実にするために <code>finally</code> ブロックを使用することは一般的に良い考えです。
 </p>
 
     
@@ -1148,9 +1208,9 @@ OpenJDK 1.7 の すべての Map 実装はこれを回避するために書き�
 
 <p>
 このメソッドは、 参照値を == または != 演算子を使用して定数と比較しています。
-この型のインスタンスを比較する正しい方法は、一般に <code>equals</code> メソッドです。
+一般的にこの型のインスタンスを比較する正しい方法は <code>equals</code> メソッドです。
 等価で識別可能なインスタンスを作成する可能性がありますが異なるオブジェクトなので == で比較しないでください。
-参照によって一般に比較されるべきではないクラスの例は、<code>java.lang.Integer</code> 、<code>java.lang.Float</code> などです。
+一般的に参照によって比較されるべきではないクラスの例は、<code>java.lang.Integer</code> 、<code>java.lang.Float</code> などです。
 </p>
 
     
@@ -1159,7 +1219,7 @@ OpenJDK 1.7 の すべての Map 実装はこれを回避するために書き�
 
 <p>
 このメソッドは、== または != 演算子を使用して2つの Boolean 値を比較しています。
-一般には2つの Boolean 値 (<code>Boolean.TRUE</code> と <code>Boolean.FALSE</code>) だけですが、
+一般的には2つの Boolean 値 (<code>Boolean.TRUE</code> と <code>Boolean.FALSE</code>) だけですが、
 <code>new Boolean(b)</code> コンストラクタを使用して他の Boolean オブジェクトを作成する可能性があります。
 そのようなオブジェクトを回避することは最高です。
 しかし、それらが存在するなら、Boolean オブジェクトの等価性をチェックするために <code>.equals(...)</code> ではなく == または != を使用しているなら異なる結果をもたらします。
@@ -1192,7 +1252,7 @@ OpenJDK 1.7 の すべての Map 実装はこれを回避するために書き�
 
 <p>
 このコードは、<code>compareTo</code> または <code>compare</code> メソッドの戻り値を無効にしています。
-これは疑わしいか間違ったプログラミングプラクティスです。戻り値が Integer.MIN_VALUE なので、戻り値を無効にすることは結果の符号を無効にしません。
+これは疑わしいかバッドプログラミングプラクティスです。戻り値が Integer.MIN_VALUE なので、戻り値を無効にすることは結果の符号を無効にしません。
 結果を無効にするのではなくオペランドの順序を逆にすることによって、同じ意図した結果を得ることができます。
 </p>
 
@@ -1212,7 +1272,7 @@ OpenJDK 1.7 の すべての Map 実装はこれを回避するために書き�
 
 
 <p>
-すべての static final フィールドが初期化される前に、スタティックイニシャライザがクラスのインスタンスを作成します。
+すべての static final フィールドが初期化される前にスタティックイニシャライザがクラスのインスタンスを作成します。
 </p>
 
     
@@ -1221,7 +1281,7 @@ OpenJDK 1.7 の すべての Map 実装はこれを回避するために書き�
 
 <p>
 (<a href="http://web.archive.org/web/20090526170426/http://java.sun.com/developer/JDCTechTips/2003/tt1208.html">From JDC Tech Tip</a>)<br>
-に解説されているとおり、Swing のメソッド、<code>show</code> メソッド、<code>setVisible</code> メソッド、<code>pack</code> メソッドは、フレームのために関連したピアを作成します。
+に解説されているとおり、Swing のメソッド、<code>show</code> メソッド、<code>setVisible</code> メソッド、<code>pack</code> メソッドは、フレームのための関連したピアを作成します。
 ピアの作成で、システムはイベントディスパッチスレッドを作成します。
 これが問題になることがあります。なぜなら <code>pack</code> メソッドと <code>validate</code> メソッドがまだ処理中でもイベントディスパッチスレッドがリスナに通知できるからです。
 この状況は、2つのスレッドが Swing コンポーネントにアクセスする可能性があり、デッドロックや、その他のスレッドに関する問題になる可能性がある重大な欠陥です。
@@ -1278,7 +1338,7 @@ OpenJDK 1.7 の すべての Map 実装はこれを回避するために書き�
 
 <p>
 この直列化可能なクラスは内部クラスです。内部クラスを直列化しようとすると関連した外部クラスのインスタンスも直列化します。
-外部クラスのインスタンスは直列化可能なので失敗しませんが、意図したことよりもっとずっと多くのデータを直列化するかもしれません。
+外部クラスのインスタンスは直列化可能なので失敗しません。しかし、意図していたよりももっと多くのデータを直列化するかもしれません。
 できれば、内部クラスを static にして問題を解決するべきです。
 </p>
 
@@ -1342,7 +1402,7 @@ OpenJDK 1.7 の すべての Map 実装はこれを回避するために書き�
 
 
 <p>
-このクラスには複数の場所で更新されるフィールドがあります。したがって、このクラスの状態の一部であると思われます。
+このクラスには複数の場所で更新されるフィールドがあります。したがって、このクラスの状態の一部だと思われます。
 しかしながら、フィールドは transient と宣言しているので、 readObject/readResolve で値が設定されません。
 クラスの直列化復元されたインスタンスにはデフォルト値が設定されます。
 </p>
@@ -1355,8 +1415,8 @@ OpenJDK 1.7 の すべての Map 実装はこれを回避するために書き�
 このクラスは <code>Serializable</code> インタフェースを実装していますが、<code>serialVersionUID</code> フィールドを定義していません。
 .class オブジェクトへの参照を追加するのと同じくらい簡単な変更でクラスに合成フィールドを追加します。
 それは、残念ながら暗黙の <code>serialVersionUID</code> を変えます (たとえば、<code>String.class</code> への参照を追加すると、<code>class$java$lang$String</code> という static フィールドを生成します)。
-また、バイトコードコンパイラへの異なるソースコードは、クラスオブジェクトまたは内部クラスに参照のために生成される合成変数のために異なる命名規則を使用するかもしれません。
-バージョンを横断する Serializable の相互運用性を保証するために、明示的に、serialVersionUID を追加することを検討してください。
+また、バイトコードコンパイラへの異なるソースコードは、クラスオブジェクトまたは内部クラスを参照するために生成される合成変数のために異なる命名規則を使用するかもしれません。
+バージョンを横断する Serializable の相互運用性を保証するために明示的に serialVersionUID を追加することを検討してください。
 </p>
 
     
@@ -1375,7 +1435,7 @@ OpenJDK 1.7 の すべての Map 実装はこれを回避するために書き�
 このキャストは、常に ClassCastException をスローします。
 FindBugs は、instanceof チェックから型情報を調査して、メソッドからの戻り値とフィールドからロードされた値の型について、より多くの正確な情報を使用します。
 したがって、宣言された変数の型にはより多くの正確な情報があるかもしれないしれません。
-そして、キャストが常に実行時例外をスローするのか判定するために使用する可能性があります。
+また、キャストが常に実行時例外をスローするのかを決定するために利用する可能性があります。
 </p>
 
     
@@ -1401,14 +1461,14 @@ String[] getAsArray(Collection&lt;String&gt; c) {
 }
 </pre></blockquote>
 <p>
-これは通常、ClassCastException をスローして失敗します。
+これは通常 ClassCastException をスローして失敗します。
 ほとんどすべてのコレクションの <code>toArray</code> メソッドは、<code>Object[]</code> を返します。
 Collection オブジェクトは宣言された総称型コレクションの参照がないので、本当に何もできません。
-コレクションから特定の型の配列を得る正しい方法は、<code>c.toArray(new String[]);</code> または <code>c.toArray(new String[c.size()]);</code> (後者はわずかにより効率的です) を使うことです。
+コレクションから特定の型の配列を得る正しい方法は、<code>c.toArray(new String[]);</code> または <code>c.toArray(new String[c.size()]);</code> (後者はわずかにより効率的です) を使用することです。
 これに対する1つの共通の知られている例外があります。
-<code>Arrays.asList(...)</code>によって返されるリストの <code>toArray()</code> メソッドは、共変な配列を返します。
+<code>Arrays.asList(...)</code>によって返されるリストの <code>toArray()</code> メソッドは共変型配列を返します。
 たとえば、<code>Arrays.asArray(new String[] { "a" }).toArray()</code> は <code>String []</code> を返します。
-FindBugs はそのようなケースを検出して抑止しようとしますが、いくつか見落とすかもしれません。
+FindBugs はそのようなケースを検出して抑止しようとしますが、見落としているかもしれません。
 </p>
 
     
@@ -1452,7 +1512,7 @@ for(int i = 0; i &lt; 4; i++)
 
 <p>
 このメソッドは、<i>(e &amp; C)</i> 形式の式を <i>D</i> と比較しています。
-定数 <i>C</i> と <i>D</i> の特定の値と常に等しくないことを比較します。論理エラーかタイプミスかもしれません。
+定数 <i>C</i> の特定の値と <i>D</i> ために常に等しくないことを比較します。論理エラーかタイプミスかもしれません。
 </p>
 
     
@@ -1469,7 +1529,7 @@ for(int i = 0; i &lt; 4; i++)
 
 <p>
 このメソッドは、<code>(e | C)</code> 形式の式を <code>D</code> と比較しています。
-定数 <i>C</i> と <i>D</i> の特定の値と常に等しくないことを比較します。論理エラーかタイプミスかもしれません。
+定数 <i>C</i> の特定の値と <i>D</i> のために常に等しくないことを比較します。論理エラーかタイプミスかもしれません。
 </p>
 <p>
 典型的に、このバグは、ビットセットで帰属関係のテストを実行したいコードで発生します。
@@ -1513,7 +1573,7 @@ for(int i = 0; i &lt; 4; i++) {
 このメソッドは、<code>((event.detail &amp; SWT.SELECTED) &gt; 0)</code> のような式を比較しています。
 ビット演算をより大きい演算子で比較することは、予想外の結果 (もちろん、<code>SWT.SELECTED</code> の値による) の原因になる可能性があります。
 <code>SWT.SELECTED</code> が負数であるなら、これはバグの候補です。
-<code>SWT.SELECTED</code> が負ではないとしても、'&gt; 0' の代わりに '!= 0' を使うことは良いプラクティスと思われます。
+<code>SWT.SELECTED</code> が負ではないとしても、'&gt; 0' の代わりに '!= 0' を使用することは良いプラクティスと思われます。
 </p>
 <p>
 Boris Bokowski
@@ -1530,39 +1590,27 @@ Boris Bokowski
 </p>
 
     
+<h3><a name="BSHIFT_WRONG_ADD_PRIORITY">BSHIFT: シフト演算の正しくない構文解析の可能性がある (BSHIFT_WRONG_ADD_PRIORITY)</a></h3>
+
+
+<p>
+コードは (x &lt;&lt; 8 + y) のような操作を行います。
+これは正しいかもしれませんが、おそらく (x &lt;&lt; 8) + y を行うことを意図していました。
+しかし、シフト演算は優先順位が低いので、実際には x &lt;&lt; (8 + y) として構文解析されます。
+</p>
+
+    
 <h3><a name="ICAST_BAD_SHIFT_AMOUNT">BSHIFT: 32ビット int の-31から31の範囲を超えた量によるシフト (ICAST_BAD_SHIFT_AMOUNT)</a></h3>
 
 
 <p>
 このコードは、32ビット int の-31から31の範囲を超えた量でシフトを実行しています。
-これの効果は、どのくらいシフトするのかを決めるために整数値の下位5ビット (32で割った余り) を使うことです (たとえば、40ビットでシフトすることは8ビットでシフトすることと同じで、32ビットでシフトすることは0ビットでシフトすることと同じです)。
-これは、おそらく期待されたことではなく、少なくとも紛らわしいです。
+これの効果は、どのくらいシフトするのかを決めるために整数値の下位5ビット (32で割った余り) を使用することです (たとえば、40ビットでシフトすることは8ビットでシフトすることと同じで、32ビットでシフトすることは0ビットでシフトすることと同じです)。
+これはおそらく期待されたことではなく、少なくとも紛らわしいです。
 </p>
 
     
-<h3><a name="BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR">Bx: プリミティブ値が3項演算子のためにアンボクシングされて、型変換される (BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR)</a></h3>
-
-
-<p>
-ラップされたプリミティブ値は、3項演算子 (<code> b ? e1 : e2</code>) の評価の一部として、別のプリミティブ型にアンボクシングされて変換されます。
-Java 言語仕様では、<code>e1</code> と <code>e2</code> がラップされた数値なら値はアンボクシングされ、共通の型へと変換/型変換されます
-(たとえば、<code>e1</code> が <code>Integer</code> で、<code>e2</code> が <code>Float</code> なら <code>e1</code> はアンボクシング (<code>int</code> に変換) され、<code>float</code> に変換され、ボクシング (<code>Float</code> に変換) されます)。
-JLS セクション15.25を参照してください。
-</p>
-
-    
-<h3><a name="CO_COMPARETO_RESULTS_MIN_VALUE">Co: compareTo()/compare() は Integer.MIN_VALUE を返す (CO_COMPARETO_RESULTS_MIN_VALUE)</a></h3>
-
-
-<p>
-いくつかの状況下では、この <code>compareTo</code> または <code>compare</code> メソッドは Integer.MIN_VALUE を返します。それは、非常に間違ったプラクティスです。
-<code>compareTo</code> メソッドの戻り値で重要なことは結果の符号だけです。
-しかし、結果の符号を無効にすることを期待して、<code>compareTo</code> メソッドの戻り値を無効にすることがあります。
-戻り値が Integer.MIN_VALUE である場合を除き、Integer.MIN_VALUE よりも-1を返します。
-</p>
-
-    
-<h3><a name="DLS_DEAD_LOCAL_INCREMENT_IN_RETURN">DLS: return 文に役に立たないインクリメントがある (DLS_DEAD_LOCAL_INCREMENT_IN_RETURN)</a></h3>
+<h3><a name="DLS_DEAD_LOCAL_INCREMENT_IN_RETURN">DLS: return 文に無駄なインクリメントがある (DLS_DEAD_LOCAL_INCREMENT_IN_RETURN)</a></h3>
 
 
 <p>
@@ -1578,7 +1626,7 @@ JLS セクション15.25を参照してください。
 <p>
 この命令は変数にクラスリテラルを代入していますが、決して使われません。<br>
 <a href="//java.sun.com/j2se/1.5.0/compatibility.html#literal">The behavior of this differs in Java 1.4 and in Java 5</a><br>
-J2SE 1.4 およびそれ以前のバージョンでは、<code>Foo.class</code> への参照は <code>Foo</code> のためのスタティックイニシャライザがすでに実行されていないなら実行することを強制します。
+J2SE 1.4 およびそれ以前のバージョンでは、<code>Foo.class</code> への参照は <code>Foo</code> のためのスタティックイニシャライザが既に実行されていないなら実行することを強制します。
 J2SE 5.0 ではそうしません。
 </p>
 <p>
@@ -1617,7 +1665,7 @@ J2SE 5.0 ではそうしません。
 
 <p>
 このコードは、10進数の数にうまく変換されない double 値から BigDecimal を作成しています。
-たとえば、Java で <code>new BigDecimal(0.1)</code> と書くと、0.1と正確に等しい BigDecimal (スケールが1でスケールなしの値が1) が作成されると思うかもしれませんが
+たとえば、Java で <code>new BigDecimal(0.1)</code> と書くと、0.1と正確に等しい BigDecimal (スケールが1でスケールなしの値が1) が作成されると思うかもしれませんが、
 実際には0.1000000000000000055511151231257827021181583404541015625と等しくなります。
 </p>
 <p>
@@ -1639,8 +1687,8 @@ J2SE 5.0 ではそうしません。
 
 
 <p>
-この総称型コレクションメソッドへの呼び出しはコレクションに自分自身が含まれている (たとえば、<code>s.contains(s)</code> が true だとして) 場合にだけ意味があります。
-これは true である可能性が低くて、もし true なら問題の原因になります (たとえば、無限再帰になっているハッシュコードの計算)。
+この総称型コレクションメソッドへの呼び出しはコレクションに自分自身が含まれている場合 (たとえば、<code>s.contains(s)</code> が true) にだけ意味があります。
+これが本当だとは思えないし、もし本当なら問題の原因になります (たとえば、無限再帰になっているハッシュコードの計算)。
 間違ったパラメータが渡されている可能性が高いです。
 </p>
 
@@ -1694,8 +1742,8 @@ J2SE 5.0 ではそうしません。
 
 
 <p>
-<code>ScheduledThreadPoolExecutor</code> は <code>ThreadPoolExecutor</code> から継承されますが継承されたチューニングメソッドの一部は有効ではありません。
-特に、corePoolSize スレッドとアンバウンド形式のキューを使用する固定サイズプールとして動作するので、maximumPoolSize の調整は有効な効果がありません。<br>
+<code>ScheduledThreadPoolExecutor</code> は <code>ThreadPoolExecutor</code> から継承されますが継承されたチューニングメソッドの一部は有用ではありません。
+特に、corePoolSize スレッドとアンバウンド形式のキューを使用する固定サイズプールとして動作するので、maximumPoolSize の調整は有用な効果がありません。<br>
 (<a href="http://java.sun.com/javase/ja/6/docs/ja/api/java/util/concurrent/ScheduledThreadPoolExecutor.html">Javadoc</a>)
 </p>
 
@@ -1718,13 +1766,23 @@ J2SE 5.0 ではそうしません。
 </p>
 
     
+<h3><a name="DM_INVALID_MIN_MAX">Dm: Math.max と Math.min の間違った組み合わせ (DM_INVALID_MIN_MAX)</a></h3>
+
+
+<p>
+このコードは、<code>Math.min(0, Math.max(100, value))</code> のような構文を使用して境界値を制限しようとしています。
+しかしながら、定数の順序が間違っています。 <code>Math.min(100, Math.max(0, value))</code> とすべきです。
+結果としてこのコードは常に同じ結果 （もし値が NaN なら NaN） を作り出します。
+</p>
+
+    
 <h3><a name="EC_ARRAY_AND_NONARRAY">EC: equals メソッドを使用して配列と非配列を比較している (EC_ARRAY_AND_NONARRAY)</a></h3>
 
 
 <p>
-このメソッドは、配列と配列であると思われない参照を比較するために <code>.equals(Object o)</code> を呼び出しています。
-比較されているものが違う型なら不等であることが保証されているので、比較はほぼ間違いなく誤りです。
-たとえそれらが両方とも配列であるとしても、配列の <code>equals</code> メソッドは2つの配列が同じオブジェクトであると決定するだけです。
+このメソッドは、配列と配列だと思われない参照を比較するために <code>.equals(Object o)</code> を呼び出しています。
+比較されているものが違う型なら等しくないことであることが保証されているので、比較はほぼ間違いなく誤りです。
+たとえそれらが両方とも配列だったとしても、配列の <code>equals</code> メソッドは2つの配列が同じオブジェクトだと決定するだけです。
 配列のコンテンツを比較するためには <code>java.util.Arrays.equals(Object[], Object[])</code> を使用してください。 
 </p>
 
@@ -1736,7 +1794,7 @@ J2SE 5.0 ではそうしません。
 このメソッドは、配列で <code>.equals(Object o)</code> を呼び出しています。
 配列は、<code>Object</code> の <code>equals</code> メソッドをオーバーライドしないので、配列で <code>equals</code> メソッドを呼び出すことはアドレスを比較することと同じです。
 配列のコンテンツを比較するためには <code>java.util.Arrays.equals(Object[], Object[])</code> を使用してください。
-配列のアドレスを比較するために、明示的に、<code>==</code> を使用して参照等価性をチェックすることは、それほど紛らわしくないでしょう。
+配列のアドレスを比較するために明示的に <code>==</code> を使用して参照等価性をチェックすることは、それほど紛らわしくないでしょう。
 </p>
 
     
@@ -1766,7 +1824,7 @@ J2SE 5.0 ではそうしません。
 このメソッドは、一方がクラスで他方がインタフェースである2つの参照で <code>equals(Object)</code> メソッドを呼び出しています。
 クラスは、そのクラスの非抽象サブクラスも含めてインタフェースを実装していません。
 したがって比較されている2つのオブジェクトは実行時に同じクラスのメンバである可能性が低いです (いくつかのアプリケーションクラスが解析できなかったか、動的クラスローディングが実行時に起こることができた場合を除く)。
-<code>equals</code> メソッドの規約によると、異なるクラスのオブジェクトは常に不等として比較するべきです。
+<code>equals</code> メソッドの規約によると、異なるクラスのオブジェクトは常に等しくないとして比較するべきです。
 したがって、<code>java.lang.Object.equals(Object)</code> によって定義される規約によれば、この比較の結果は実行時に常に false になります。
 </p>
 
@@ -1778,7 +1836,7 @@ J2SE 5.0 ではそうしません。
 このメソッドは、どちらも他方のサブタイプでない無関係なインタフェース型の2つの参照で <code>equals(Object)</code> メソッドを呼び出しています。
 そして、両方のインタフェースを実装する既知の非抽象クラスがありません。
 したがって比較されている2つのオブジェクトは実行時に同じクラスのメンバである可能性が低いです (いくつかのアプリケーションクラスが解析できなかったか、動的クラスローディングが実行時に起こることができた場合を除く)。
-<code>equals</code> メソッドの規約によると、異なるクラスのオブジェクトは常に不等として比較するべきです。
+<code>equals</code> メソッドの規約によると、異なるクラスのオブジェクトは常に等しくないとして比較するべきです。
 したがって、<code>java.lang.Object.equals(Object)</code> によって定義される規約によれば、この比較の結果は実行時に常に false になります。
 </p>
 
@@ -1787,10 +1845,9 @@ J2SE 5.0 ではそうしません。
 
 
 <p>
-このメソッドは、共通のサブクラスがない異なるクラス型の2つのオブジェクト参照で <code>equals(Object)</code> メソッドを呼び出しています。
-したがって比較されている2つのオブジェクトは実行時に同じクラスのメンバである可能性が低いです (いくつかのアプリケーションクラスが解析できなかったか、動的クラスローディングが実行時に起こることができた場合を除く)。
-<code>equals</code> メソッドの規約によると、異なるクラスのオブジェクトは常に不等として比較するべきです。
-したがって、<code>java.lang.Object.equals(Object)</code> によって定義される規約によれば、この比較の結果は実行時に常に false になります。
+このメソッドは、異なるクラス型の2つの参照で  <code>equals(Object)</code> メソッドを呼び出していて、解析が実行時に異なるクラスのオブジェクトになることを示唆しています。
+さらに、呼び出されるであろう　equals メソッドの検査では、この呼び出しは常に false を返すか、
+あるいは equals メソッドが対称 (Object クラスの equals のための契約に必要な性質) ではないことのどちらかを示唆しています。
 </p>
 
     
@@ -1808,7 +1865,7 @@ J2SE 5.0 ではそうしません。
 
 <p>
 このクラスでは、常に false を返す <code>equlas</code> メソッドを定義しています。
-これは、オブジェクトがそれ自身と等価ではないことを意味していて、このクラスの有効な Map や Set を作成できません。
+これはオブジェクトがそれ自身と等価ではないことを意味していて、このクラスの有用な Map や Set を作成できません。
 より根本的に、<code>equals</code> メソッドの要件の一つである反射性を満たしていないことになります。
 </p>
 <p>
@@ -1847,8 +1904,8 @@ public boolean equals(Object o) {
 
 <p>
 このクラスは列挙を定義していて、列挙の等価性はオブジェクト同一性を使用して定義されています。
-列挙値のために共変な <code>equals</code> メソッドを定義することは、非常に間違ったプラクティスです。
-2つの異なる列挙値が一般にの <code>equals</code> メソッドでは「等価ではない」と判定され、共変な <code>equals</code> メソッドでは「等価」と判定されるからです。
+列挙値のために共変な <code>equals</code> メソッドを定義することは、ひどいバッドプラクティスです。
+2つの異なる列挙値が <code>equals</code> メソッドでは「等価ではない」と判定され、共変な <code>equals</code> メソッドでは「等価」と判定されるからです。
 共変な <code>equals</code> メソッドを定義しないでください。
 </p>
 
@@ -1900,7 +1957,7 @@ public boolean equals(Object o) {
 このコードは、浮動小数点が特別な非数値と等価であるか確かめています (たとえば <code>if (x == Double.NaN)</code>)。
 しかしながら、<code>NaN</code> の特別な意味のため、値は <code>NaN</code> と等価ではありません。
 したがって、<code>x == Double.NaN</code> は常に false と評価します。
-<code>x</code> という値が特別な非数値であるかどうか確かめるためには <code>Double.isNaN(x)</code> を使用します (あるいは <code>x</code> が浮動小数点精度であるなら <code>Float.isNaN(x)</code>)。
+<code>x</code> という値が特別な非数値であるかどうか確かめるためには <code>Double.isNaN(x)</code> を使用します (または <code>x</code> が浮動小数点精度であるなら <code>Float.isNaN(x)</code>)。
 </p>
 
     
@@ -1976,7 +2033,7 @@ printf スタイルの書式文字列が必要なときに、MessageFormat の�
 総称型コレクションメソッドへの呼び出しにコレクションのパラメータとは互換性のないクラスの引数があります (すなわち、引数の型は総称型引数に対応するスーパタイプでもサブタイプでもありません)。
 したがって、コレクションにはここで使用されたメソッド引数と等価であるどんなオブジェクトも含まれていません。
 多分間違った値がメソッドに渡されています。
-一般に、2つの無関係なクラスのインスタンスは等価ではありません。
+一般的に2つの無関係なクラスのインスタンスは等価ではありません。
 たとえば、<code>Foo</code> と <code>Bar</code> クラスがサブタイプによって関係がないなら、<code>Foo</code> のインスタンスは <code>Bar</code> のインスタンスと等価のはずがありません。
 その他の問題で対称的ではない <code>equals</code> メソッドになる可能性が高いです。
 たとえば、<code>Foo</code> が <code>String</code> と等価であるように <code>Foo</code> クラスを定義するなら、<code>String</code> は <code>String</code> だけと等価であるので、<code>equals</code> メソッドは対称的ではありません。
@@ -2014,7 +2071,7 @@ APIのどれも文書化していないか、保証もしていないが、<code
 <p>
 このコードは、32ビット int 値を64ビット long 値に変換して、絶対時間値を必要とするメソッドパラメータに渡しています。
 絶対時間値は、「エポック」（すなわち、1970年1月1日、00:00:00 GMT）としてわかっている標準的な基準時間からのミリ秒数です。<br>
-たとえば、次のメソッド（Date にエポックから秒を変換することを意図した）は、ひどく壊れています。
+たとえば、次のメソッド （エポックからの秒を Date へ変換することを意図した） はひどく壊れています。
 </p>
 <blockquote><pre>
 Date getDate(int seconds) { return new Date(seconds * 1000); }
@@ -2024,7 +2081,7 @@ Date getDate(int seconds) { return new Date(seconds * 1000); }
 32ビット値は、64ビットに変換されて、絶対時間値を表すために使用されるとき、1969年12月と1970年1月の日付しか表せません。
 </p>
 <p>
-上記のメソッドのための正しい実装は、以下のとおりです。
+上記のメソッドの正しい実装は以下のとおりです。
 </p>
 <blockquote><pre>
 // 失敗、2037年後の日付
@@ -2138,7 +2195,7 @@ JUnit の TestCase クラスで、<code>tearDown</code> メソッドを実装し
 
 
 <p>
-このメソッドは、無条件で自分自身を呼び出します。これは、スタックオーバーフローになる無限再帰ループを示しています。
+このメソッドは、無条件で自分自身を呼び出します。これはスタックオーバーフローになる無限再帰ループを示しています。
 </p>
 
     
@@ -2156,16 +2213,16 @@ JUnit の TestCase クラスで、<code>tearDown</code> メソッドを実装し
 
 
 <p>
-このコードは、int 値と int 値として表現できる値の範囲外にある long 定数を比較しています。
+このコードは、int 値と int 値として表される値の範囲外の long 定数を比較しています。
 この比較は無意味で、おそらく間違っています。
 </p>
 
     
-<h3><a name="INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">INT: 負でない値と負の定数との間違った比較 (INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE)</a></h3>
+<h3><a name="INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">INT: 負でない値と負の定数またはゼロとの間違った比較 (INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE)</a></h3>
 
 
 <p>
-このコードは、負でないことが保証されている値と負の定数とを比較しています。 
+このコードは、負でないことが保証されている値と負の定数またはゼロとを比較しています。 
 </p>
 
     
@@ -2183,7 +2240,7 @@ JUnit の TestCase クラスで、<code>tearDown</code> メソッドを実装し
 
 <p>
 このコードは、ファイルを追加モードで開いて、オブジェクト出力ストリームの中で結果をラップしています。
-これは、ファイルに格納された既存のオブジェクト出力ストリームに追加できないでしょう。
+これはファイルに格納された既存のオブジェクト出力ストリームに追加できないでしょう。
 オブジェクト出力ストリームに追加したいなら、オブジェクト出力ストリームを開いておく必要があります。
 </p>
 <p>
@@ -2215,7 +2272,7 @@ JUnit の TestCase クラスで、<code>tearDown</code> メソッドを実装し
 
 <p>
 このメソッドは、このクラスまたはスーパークラスのフィールドと同じ名前でローカル変数を定義しています。
-これはフィールドから初期化されていない値を読み出したり初期化されていないフィールドをそのままにしておくメソッドの原因になるかもしれません。
+フィールドから初期化されていない値を読み出す、初期化されていないフィールドをそのままにしておくか、または両方を引き起こすかもしれません。
 </p>
 
     
@@ -2233,7 +2290,7 @@ JUnit の TestCase クラスで、<code>tearDown</code> メソッドを実装し
 
 <p>
 例外経路上のここで null 値を利用しています。コードが実行されると NullPointerException が発生します。
-現在の FindBugs は実行不可能な例外経路を取り除いていないので、誤検出かもしれないことに注意してください。
+現在の FindBugs は実行不可能な例外経路を刈り取れていないので、誤検出かもしれないことに注意してください。
 </p>
 <p>
 switch 文の default が多くの場合実行不可能なので FindBugs が例外経路である default を検討することに注意して下さい。
@@ -2296,11 +2353,11 @@ switch 文の default が多くの場合実行不可能なので FindBugs が例
 </p>
 
     
-<h3><a name="NP_NONNULL_RETURN_VIOLATION">NP: null を返すかもしれないメソッドが @NonNull 宣言されている (NP_NONNULL_RETURN_VIOLATION)</a></h3>
+<h3><a name="NP_NONNULL_RETURN_VIOLATION">NP: null を返すかもしれないメソッドが @Nonnull 宣言されている (NP_NONNULL_RETURN_VIOLATION)</a></h3>
 
 
 <p>
-このメソッドは、null 値を返すかもしれないのにメソッド (またはスーパークラスのメソッド) の戻り値に @NonNull が宣言されています。
+このメソッドは、null 値を返すかもしれないのにメソッド (またはスーパークラスのメソッド) の戻り値に @Nonnull が宣言されています。
 </p>
 
     
@@ -2327,8 +2384,8 @@ switch 文の default が多くの場合実行不可能なので FindBugs が例
 
 
 <p>
-例外経路上のここで null 値が利用されています。コードが実行されると NullPointerException が発生するかもしれません。
-現在の FindBugs は実行不可能な例外経路を取り除かないので、誤検出かもしれないことに注意してください。
+例外経路上のここで null 値が利用されています。コードが実行されると NullPointerException を引き起こすことがあります。
+現在の FindBugs は実行不可能な例外経路を刈り取れていないので、誤検出かもしれないことに注意してください。
 </p>
 <p>
 switch 文の default が多くの場合実行不可能なので FindBugs が例外経路である default を検討することに注意して下さい。
@@ -2357,7 +2414,7 @@ switch 文の default が多くの場合実行不可能なので FindBugs が例
 
 
 <p>
-null の可能性がある値が、非 null メソッドパラメータに渡されています。
+null の可能性がある値が 非 null メソッドパラメータに渡されています。
 パラメータは、常に非 null とすべきパラメータとしてアノテートされていたか、または解析が常に null 値を利用すると示していました。
 </p>
 
@@ -2371,11 +2428,11 @@ null 値をこのようなケースで返すことは契約違反で、多分ク
 </p>
 
     
-<h3><a name="NP_STORE_INTO_NONNULL_FIELD">NP: @NonNull でアノテートされたフィールドに null を格納している (NP_STORE_INTO_NONNULL_FIELD)</a></h3>
+<h3><a name="NP_STORE_INTO_NONNULL_FIELD">NP: @Nonnull でアノテートされたフィールドに null を格納している (NP_STORE_INTO_NONNULL_FIELD)</a></h3>
 
 
 <p>
-@NonNull でアノテートされたフィールドに null かもしれない値を格納しています。 
+@Nonnull としてアノテートされたフィールドに null かもしれない値を格納しています。 
 </p>
 
     
@@ -2421,7 +2478,7 @@ null 値をこのようなケースで返すことは契約違反で、多分ク
 <p>
 この正規のメソッドは定義しているクラスと同じ名前です。
 これはコンストラクタを意図していた可能性が高いです。もしそうなら void 戻り値の宣言を除去してください。
-このメソッドを定義したことが偶然間違っているとわかり、正しいコンストラクタを定義したが、下位互換性のためにこのメソッドを取り除くことができないなら、メソッドを非推奨にしてください。
+偶然メソッドを定義したことが間違いだとわかり、適切なコンストラクタを定義したが、後方互換性のためにこのメソッドを除去できないならメソッドを非推奨にしてください。
 </p>
 
     
@@ -2434,7 +2491,7 @@ null 値をこのようなケースで返すことは契約違反で、多分ク
 </p>
 
     
-<h3><a name="NM_WRONG_PACKAGE">Nm: パラメータの間違ったパッケージのために、スーパークラスのメソッドをオーバーライドしていないメソッド (NM_WRONG_PACKAGE)</a></h3>
+<h3><a name="NM_WRONG_PACKAGE">Nm: パラメータの間違ったパッケージのためにスーパークラスのメソッドをオーバーライドしていないメソッド (NM_WRONG_PACKAGE)</a></h3>
 
 
 <p>
@@ -2469,22 +2526,57 @@ public class B extends A {
 </p>
 
     
+<h3><a name="RANGE_ARRAY_INDEX">RANGE: 配列インデックスは範囲外 (RANGE_ARRAY_INDEX)</a></h3>
+
+
+<p>
+配列演算が行なわれますが、配列インデックスが範囲外なので実行時に ArrayIndexOutOfBoundsException が発生するでしょう。
+</p>
+
+    
+<h3><a name="RANGE_ARRAY_LENGTH">RANGE: 配列の長さは範囲外 (RANGE_ARRAY_LENGTH)</a></h3>
+
+
+<p>
+メソッドは、配列パラメータと長さパラメータで呼び出されますが、長さは範囲外です。
+実行時に IndexOutOfBoundsException が発生するでしょう。
+</p>
+
+    
+<h3><a name="RANGE_ARRAY_OFFSET">RANGE: 配列オフセットは範囲外 (RANGE_ARRAY_OFFSET)</a></h3>
+
+
+<p>
+メソッドは、配列パラメータとオフセットパラメータで呼び出されますが、オフセットは範囲外です。
+実行時に IndexOutOfBoundsException が発生するでしょう。
+</p>
+
+    
+<h3><a name="RANGE_STRING_INDEX">RANGE: 文字列インデックスは範囲外 (RANGE_STRING_INDEX)</a></h3>
+
+
+<p>
+文字列メソッドが呼び出されます。指定された文字列インデックスは範囲外です。
+実行時に StringIndexOutOfBoundsException が発生するでしょう。
+</p>
+
+    
 <h3><a name="RC_REF_COMPARISON">RC: 疑わしい参照比較 (RC_REF_COMPARISON)</a></h3>
 
 
 <p>
 このメソッドは、 == または != 演算子を使用して2つの参照値を比較しています。
-この型のインスタンスを比較する正しい方法は、一般に <code>equals</code> メソッドです。
+一般的にこの型のインスタンスを比較する正しい方法は <code>equals</code> メソッドです。
 等価で識別可能なインスタンスを作成する可能性がありますが異なるオブジェクトなので == で比較しないでください。
 参照によって一般に比較されるべきでないクラスの例は、<code>java.lang.Integer</code> 、<code>java.lang.Float</code> などです。
 </p>
 
     
-<h3><a name="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE">RCN: すでに利用していた値の null チェック (RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE)</a></h3>
+<h3><a name="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE">RCN: 既に利用していた値の null チェック (RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE)</a></h3>
 
 
 <p>
-ここで値が null なのかチェックしていますが、すでに値を利用していたので null である可能性はありません。
+ここで値が null なのかチェックしていますが、既に値を利用していたので null である可能性はありません。
 値が null なら以前の利用で NullPointerException が発生していたでしょう。
 基本的に、値が null であることを許すのかどうかに関係なく、このコードと以前の値の利用は一致しません。
 チェックは冗長か、または以前の値の利用は誤りです。
@@ -2504,7 +2596,7 @@ public class B extends A {
 
 
 <p>
-このコードは、正規表現が必要とされる場所で、<code>File.separator</code> を使用しています。
+このコードは、正規表現が必要な場所で、<code>File.separator</code> を使用しています。
 これは <code>File.separator</code> がバックスラッシュである Windows プラットホームでは失敗します。
 バックスラッシュは正規表現ではエスケープ文字として解釈されます。
 その他の選択肢としては、<code>File.separator</code> の代わりに <code>File.separatorChar=='\\' ? "\\\\" : File.separator</code> を使用できます。 
@@ -2516,7 +2608,7 @@ public class B extends A {
 
 <p>
 String 機能が呼び出されていて、"." または "|" が引数として正規表現を取るパラメータに渡されています。
-これは、意図したことですか?
+これは意図したことですか?
 たとえば
 </p>
 <ul>
@@ -2729,7 +2821,7 @@ public void foo() {
 
 
 <p>
-オブジェクトが要求する型であるかどうかにかかわらず、静的に確定している可能性があるのに instanceof 演算子を使用して型チェックをしています。
+オブジェクトが要求する型であるかどうかにかかわらず、静的に判定される instanceof 演算子を使用して型チェックをしています。
 </p>
 
     
@@ -2790,13 +2882,13 @@ public void foo() {
 
 
 <p>
-型修飾子であのてーとされた値がその修飾子を付けてはならない値を必要とする場所で使われています。
+型修飾子でアノテートされた値がその修飾子を付けてはならない値を必要とする場所で使われています。
 </p>
 <p>
 より正確に、when=ALWAYS を指定した型修飾子でアノテートされた値が到達することが保証されているか同じ型修飾子で when=NEVER を指定する場所で使用しています。
 </p>
 <p>
-たとえば、@NonNegative が型修飾子アノテーション @Negative(when=When.NEVER) の略称だとします。
+たとえば、@NonNegative は型修飾子アノテーション @Negative(when=When.NEVER) の略称とします。
 以下のコードは、return 文が ＠NonNegative 値を要求するが ＠Negative としてマークされている値を受け取るのでこの警告を生成します。
 </p>
 <blockquote><pre>
@@ -2816,7 +2908,7 @@ public @NonNegative Integer example(@Negative Integer value) {
 より正確に、when=ALWAYS を指定した型修飾子でアノテートされた値が同じ型修飾子で when=NEVER を指定する値と比較しています。
 </p>
 <p>
-たとえば、@NonNegative が型修飾子アノテーション @Negative(when=When.NEVER) の略称だとします。
+たとえば、@NonNegative は型修飾子アノテーション @Negative(when=When.NEVER) の略称とします。
 以下のコードは、return 文が @NonNegative 値を要求するが、@Negative としてマークされている値を受け取るのでこの警告を生成します。
 </p>
 <blockquote><pre>
@@ -2863,7 +2955,7 @@ public boolean example(@Negative Integer value1, @NonNegative Integer value2) {
 </p>
 <p>
 厳密なアノテーションを指定しているので値を型変換します。戻り値が厳密なアノテーションでアノテートされる同一性機能を定義してください。
-これは、厳密な型修飾子アノテーションで非アノテート値を値に変える唯一の方法です。
+これは厳密な型修飾子アノテーションで非アノテート値を値に変える唯一の方法です。
 </p>
 
     
@@ -2872,9 +2964,9 @@ public boolean example(@Negative Integer value1, @NonNegative Integer value2) {
 
 <p>
 この無名クラスは、直接呼び出されないスーパークラスのメソッドをオーバーライドしていないメソッドを定義しています。
-他のクラスのメソッドが無名クラスで宣言されたメソッドを直接呼び出せないので、このメソッドは呼び出し不可能であると思われます。
+他のクラスのメソッドが無名クラスで宣言されたメソッドを直接呼び出せないので、このメソッドは呼び出し不可能だと思われます。
 メソッドは単にデッドコードであるかもしれません。しかし、メソッドがスーパークラスで宣言されるメソッドをオーバーライドすることを意図した可能性もあります。
-そして、タイプミスまたは他の誤りのために、メソッドは、実際、それが意図されるメソッドをオーバーライドしません。
+そして、タイプミスまたは他の誤りのためにメソッドは、実際には意図しているメソッドをオーバーライドしません。
 </p>
 
     
@@ -2883,7 +2975,7 @@ public boolean example(@Negative Integer value1, @NonNegative Integer value2) {
 
 <p>
 このコンストラクタは、まだ値が代入されていないフィールドを読み出しています。
-多くの場合、プログラマがコンストラクタのパラメータの代わりに誤ってフィールドを使用するときに起きます。
+多くの場合、プログラマがコンストラクタのパラメータの代わりに誤ってフィールドを使うときに起きます。
 </p>
 
     
@@ -2930,7 +3022,7 @@ class B extends A {
 
 <p>
 このコードは、無名の配列で <code>toString</code> メソッドを呼び出しています。「[C@16f0472」のようなかなり役に立たない結果を生成します。
-配列のコンテンツを与え、読める文字列に変換するために、<code>Arrays.toString()</code> を使うことを検討してください。<br>
+配列のコンテンツを与え、読める文字列に変換するために <code>Arrays.toString()</code> を使用することを検討してください。<br>
 『Programming Puzzlers』の第3章、パズル12を参照してください。
 </p>
 
@@ -2940,7 +3032,7 @@ class B extends A {
 
 <p>
 このコードは、配列で <code>toString</code> メソッドを呼び出しています。「[C@16f0472」のようなかなり役に立たない結果を生成します。
-配列のコンテンツを与え、読める文字列に変換するために、<code>Arrays.toString()</code> を使うことを検討してください。<br>
+配列のコンテンツを与え、読める文字列に変換するために <code>Arrays.toString()</code> を使用することを検討してください。<br>
 『Programming Puzzlers』の第3章、パズル12を参照してください。
 </p>
 
@@ -2950,7 +3042,7 @@ class B extends A {
 
 <p>
 書式文字列でフォーマットされている引数の1つは配列です。
-これは [I@304282 のようなかなり役に立たない書式を使用してフォーマットされます。それは配列のコンテンツを表示しません。
+[I@304282 のように配列のコンテンツを表示しないかなり役に立たない書式を使用してフォーマットされます。
 フォーマットで扱う前に <code>Arrays.asList(...)</code> を使用して配列をラップすることを検討してください。
 </p>
 
@@ -2960,7 +3052,7 @@ class B extends A {
 
 <p>
 このフィールドに定数値 null を書き込みます。したがって、フィールドの読み出しは null を返します。
-誤りをチェックしてください。使わないなら除去してください。
+誤りをチェックしてください。役に立たないなら除去してください。
 </p>
 
     
@@ -2969,7 +3061,7 @@ class B extends A {
 
 <p>
 このフィールドは決して書き込まれません。このフィールドからの読み出しはデフォルト値を返します。
-誤りをチェックしてください (フィールドは初期化するべきでしたか？)。使わないなら除去してください。
+誤りをチェックしてください (フィールドは初期化するべきでしたか？)。役に立たないなら除去してください。
 </p>
 
     
@@ -2978,7 +3070,7 @@ class B extends A {
 
 <p>
 このコードは可変長引数をとるメソッドにプリミティブ型の配列を渡しています。
-これは、プリミティブ型の配列を保持するために長さが1の配列を作成してメソッドに渡します。
+これはプリミティブ型の配列を保持するために長さが1の配列を作成してメソッドに渡します。
 </p>
 
     
@@ -2987,7 +3079,7 @@ class B extends A {
 
 <p>
 OpenJDK は、潜在的非互換性を取り入れました。特に、<code>java.util.logging.Logger</code> は振る舞いが変更されています。
-強参照を使用する代わりに、現在、内部的に弱参照を使用しています。
+強参照を使用する代わりに弱参照を内部的に使用しています。
 それは理にかなった変更ですが、残念ながらいくつかのコードは古い振る舞いに依存しています。
 ロガーの構成を変更するとき、ロガーへの参照を捨てます。
 つまり、ガベージコレクタはそのメモリを回収できます。それは、ロガーの構成が失われることを意味します。<br>
@@ -3020,10 +3112,10 @@ Ulf Ochsenfahrt と Eric Fellheimer
 
 
 <p>
-このメソッドは、ストリーム、データベースオブジェクト、または明示的にクリーンアップ操作を必要としている他のリソースのクリーンアップ (クローズする、片付ける) に失敗するかもしれません。
+このメソッドは、ストリーム、データベースオブジェクト、またはクリーンアップ操作を明示的に必要としている他のリソースのクリーンアップ (クローズする、片付ける) に失敗するかもしれません。
 </p>   
 <p>
-一般に、メソッドがストリープや他のリソースを開いたなら、メソッドはストリームやリソースがメソッドが戻る前にクリーンアップされることを確認するために、try/finally ブロックを使用するべきです。
+一般的にメソッドがストリープや他のリソースを開いたなら、メソッドはストリームやリソースがメソッドが戻る前にクリーンアップされることを確認するために try/finally ブロックを使用するべきです。
 </p>
 <p>
 このバグパターンは、OS_OPEN_STREAM と ODR_OPEN_DATABASE_RESOURCE と基本的に同じですが異なる (そして、うまくいけばより良い) 静的解析技術に基づいています。
@@ -3046,10 +3138,10 @@ Ulf Ochsenfahrt と Eric Fellheimer
 
 
 <p>
-このメソッドは、ストリーム、データベースオブジェクト、または明示的にクリーンアップ操作を必要としている他のリソースのクリーンアップ (クローズする、片付ける) に失敗するかもしれません。
+このメソッドは、ストリーム、データベースオブジェクト、またはクリーンアップ操作を明示的必要としている他のリソースのクリーンアップ (クローズする、片付ける) に失敗するかもしれません。
 </p>   
 <p>
-一般に、メソッドがストリープや他のリソースを開いたなら、メソッドはストリームやリソースがメソッドが戻る前にクリーンアップされることを確認するために、try/finally ブロックを使用するべきです。
+一般的にメソッドがストリープや他のリソースを開いたなら、メソッドはストリームやリソースがメソッドが戻る前にクリーンアップされることを確認するために try/finally ブロックを使用するべきです。
 </p>
 <p>
 このバグパターンは、OS_OPEN_STREAM と ODR_OPEN_DATABASE_RESOURCE と基本的に同じですが異なる (そして、うまくいけばより良い) 静的解析技術に基づいています。
@@ -3073,7 +3165,7 @@ Ulf Ochsenfahrt と Eric Fellheimer
 
 <p>
 文字列がプラットホームのデフォルトエンコーディングを使用して大文字、小文字に変換されています。
-国際文字で使われると不適切な変換になるかもしれません。
+国際文字で使われると不適切な変換になることがあります。
 </p>
 <ul>
   <li>String.toUpperCase(Locale l)</li>
@@ -3085,8 +3177,8 @@ Ulf Ochsenfahrt と Eric Fellheimer
 
 
 <p>
-byte から String (または String から byte) への変換で、デフォルトプラットホームエンコーディングが適切であると仮定するメソッドの呼び出しを発見しました。
-これは、アプリケーションの振る舞いがプラットホーム間で異なる原因となります。代替 API を使用して、明示的に文字セット名または Charset オブジェクトを指定して下さい。
+byte から String (または String から byte) への変換で、デフォルトプラットホームエンコーディングが適切だと仮定するメソッドの呼び出しを発見しました。
+これはアプリケーションの振る舞いがプラットホーム間で異なる原因となります。代替 API を使用して、文字セット名または Charset オブジェクトを明示的に指定して下さい。
 </p>
 
     
@@ -3146,11 +3238,11 @@ byte から String (または String から byte) への変換で、デフォル
 </p>
 
     
-<h3><a name="MS_CANNOT_BE_FINAL">MS: final でないフィールドは悪質なコードから保護できない (MS_CANNOT_BE_FINAL)</a></h3>
+<h3><a name="MS_CANNOT_BE_FINAL">MS: final でないフィールドは悪意のあるコードから保護できない (MS_CANNOT_BE_FINAL)</a></h3>
 
 
 <p>
-この可変 static フィールドは、悪質なコードや偶然別のパッケージによって変更される可能性があります。
+この可変 static フィールドは悪意のあるコードや偶然別のパッケージによって変更できます。
 残念ながらこのような使い方は簡単に解決できません。
 </p>
 
@@ -3169,7 +3261,7 @@ public static メソッドは、クラスの 静的な状態の一部である�
 
 
 <p>
-この可変 static フィールドは、悪質なコードや偶然別のパッケージによって変更される可能性があります。
+この可変 static フィールドは悪意のあるコードや偶然別のパッケージによって変更できます。
 フィールドは、脆弱性を回避するために final および/またはパッケージプロテクテッドにします。
 </p>
 
@@ -3178,8 +3270,29 @@ public static メソッドは、クラスの 静的な状態の一部である�
 
 
 <p>
-この final static フィールドは、配列を参照しているので、悪質なコードや偶然別のパッケージによってアクセスされる可能性があります。
+この final static フィールドは配列を参照しているので、悪意のあるコードや偶然別のパッケージによってアクセスできます。
 このコードは、配列のコンテンツを自由に変更できます。
+</p>
+
+    
+<h3><a name="MS_MUTABLE_COLLECTION">MS: 可変コレクションのフィールド (MS_MUTABLE_COLLECTION)</a></h3>
+
+
+<p>
+可変コレクションのインスタンスが final static フィールドに割り当てられています。
+したがって、 悪意のあるコードや偶然別のパッケージによって変更できます。
+脆弱性を避けるために  Collections.unmodifiableSet/List/Map などでこのフィールドをラップすることを検討してください。
+</p>
+
+    
+<h3><a name="MS_MUTABLE_COLLECTION_PKGPROTECT">MS: パッケージプロテクテッドにすべき可変コレクションのフィールド (MS_MUTABLE_COLLECTION_PKGPROTECT)</a></h3>
+
+
+<p>
+可変コレクションのインスタンスが final static フィールドに割り当てられています。
+したがって、悪意のあるコードや偶然別のパッケージによって変更できます。
+フィールドは脆弱性を避けるためにパッケージプロテクテッドにできます。
+代わりに Collections.unmodifiableSet/List/Map などでこのフィールドをラップしても脆弱性を避けることができます。
 </p>
 
     
@@ -3187,7 +3300,7 @@ public static メソッドは、クラスの 静的な状態の一部である�
 
 
 <p>
-この final static フィールドは、Hashtable を参照しているので、悪質なコードや偶然別のパッケージによってアクセスされる可能性があります。
+この final static フィールドは Hashtable を参照しているので、悪意のあるコードや偶然別のパッケージによってアクセスできます。
 このコードは、Hashtable のコンテンツを自由に変更できます。
 </p>
 
@@ -3196,9 +3309,9 @@ public static メソッドは、クラスの 静的な状態の一部である�
 
 
 <p>
-インタフェースに定義された final static フィールドが、配列や Hashtable などの可変オブジェクトを参照しています。
-この可変オブジェクトは、悪質なコードや偶然別のパッケージによって変更される可能性があります。
-これを解決するために、フィールドはクラスへ移動する必要があり、脆弱性を回避するためにパッケージプロテクテッドにします。
+インタフェースに定義された final static フィールドが配列や Hashtable などの可変オブジェクトを参照しています。
+この可変オブジェクトは悪意のあるコードや偶然別のパッケージによって変更できます。
+これを解決するためにフィールドはクラスへ移動する必要があり、脆弱性を回避するためにパッケージプロテクテッドにします。
 </p>
 
     
@@ -3206,7 +3319,7 @@ public static メソッドは、クラスの 静的な状態の一部である�
 
 
 <p>
-この可変 static フィールドは、悪質なコードや偶然別のパッケージによって変更される可能性があります。
+この可変 static フィールドは悪意のあるコードや偶然別のパッケージによって変更できます。
 フィールドは、脆弱性を回避するためにパッケージプロテクテッドにします。
 </p>
 
@@ -3215,7 +3328,7 @@ public static メソッドは、クラスの 静的な状態の一部である�
 
 
 <p>
-final でない public static フィールドは、悪質なコードや偶然別のパッケージによって変更される可能性があります。
+final でない public static フィールドは悪意のあるコードや偶然別のパッケージによって変更できます。
 フィールドは、脆弱性を回避するために final にします。
 </p>
 
@@ -3224,7 +3337,7 @@ final でない public static フィールドは、悪質なコードや偶然�
 
 
 <p>
-final でない public static フィールドは、悪質なコードや偶然別のパッケージによって変更される可能性があります。
+final でない public static フィールドは悪意のあるコードや偶然別のパッケージによって変更できます。
 フィールドは、脆弱性を回避するために final にします。
 しかしながら、スタティックイニシャライザには複数のフィールドへの書き込みがあるので、何らかのリファクタリングを必要とするでしょう。
 </p>
@@ -3245,6 +3358,19 @@ final でない public static フィールドは、悪質なコードや偶然�
 <p>
 このメソッドにはダブルチェックロッキングのインスタンスがあるかもしれません。このイディオムは、Java のメモリモデルでは正しくありません。<br>
 詳細は、<a href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html" >http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html</a> を参照してください。
+</p>
+
+    
+<h3><a name="DC_PARTIALLY_CONSTRUCTED">DC: 部分的に初期化されたオブジェクトを暴露する可能性がある (DC_PARTIALLY_CONSTRUCTED)</a></h3>
+
+
+<p>
+ダブルチェックロッキングと共に遅延初期化フィールドを使用するメソッドのようです。
+フィールドが正しく volatile として宣言される間にオブジェクトの内部構造がフィールドに割り当てられた後で変更される可能性があります。
+したがって、他のスレッドが部分的に初期化されたオブジェクトを見るかもしれません。
+</p>
+<p>
+この問題を直すために、最初にローカル変数をオブジェクトに格納して、完全に構築した後で volatile フィールドを保存することを考えてください。
 </p>
 
     
@@ -3284,7 +3410,7 @@ synchronized(count) {
 }
 </pre></blockquote>
 <p>
-<code>Integer</code> オブジェクトはキャッシュして共有される可能性があります。
+<code>Integer</code> オブジェクトはキャッシュして共有できます。
 他の無関係なコードと同じオブジェクトで同期化している可能性があるので、無応答やデッドロックの原因になります。
 </p>
 <p>
@@ -3333,7 +3459,7 @@ synchronized(fileLock) {
 private static final Object fileLock = new Object();
 </pre></blockquote>
 <p>
-既存のコードとしては間違っていないのかもしれませんが、紛らわしいので将来リファクタリングするべきかもしれません。
+既存のコードとしては間違っていないかもしれないが、紛らわしいので将来リファクタリングするべきかもしれません。
 たとえば、IntelliJ の "Remove Boxing" のようなリファクタリングは Java 仮想マシンを通して共有される正準化された <code>Integer</code> オブジェクトを使用するように置き換えてしまい、非常に紛らわしい振る舞いと潜在的デッドロックの原因になります。
 </p>
 
@@ -3393,7 +3519,7 @@ synchronized() {
 </p>
 <p>
 不正確ないろいろな原因がこのディテクタにあることに注意してください。
-たとえば、ディテクタはロックを保持されるすべての状況を静的に検出できるというわけではありません。
+たとえば、ディテクタはロックを保持されるすべての状況を静的に検出できるわけではありません。
 また、ディテクタがロックされたアクセスとアンロックされたアクセスの区別が正確なときでも、問題のコードは依然として正しいかもしれません。
 </p>
 
@@ -3443,10 +3569,10 @@ synchronized() {
 
 <p>
 このメソッドにはvolatile でない static フィールドの非同期な遅延初期化があります。
-コンパイラやプロセッサが命令を並べ替えるかもしれないので、メソッドが複数のスレッドによって呼び出されるかもしれないなら、
+コンパイラやプロセッサが命令を並べ替えるかもしれないので、メソッドが複数のスレッドによって呼び出されるなら、
 スレッドは完全に初期化されたオブジェクトを見るとは保証されていません。
 フィールドにアクセスした際に、中途半端に初期化されたインスタンスが見えてしまう危険があります。
-この問題を修正するために、フィールドを volatile にできます。<br>
+この問題を修正するためにフィールドを volatile にできます。<br>
 詳細は、<a href="http://www.cs.umd.edu/~pugh/java/memoryModel/">Java Memory Model web site</a> を参照してください。
 </p>
 
@@ -3457,7 +3583,7 @@ synchronized() {
 <p>
 このメソッドにはstatic フィールドの非同期な遅延初期化があります。
 フィールドが設定された後で、その場所に格納されるオブジェクトはさらに更新されるかアクセスされます。
-それが設定されるとすぐに、フィールドの設定は他のスレッドに見えます。
+それが設定されるとすぐに、フィールドを設定することは他のスレッドに見えます。
 フィールドを設定するさらなるアクセスがオブジェクトを初期化するのに役に立つなら、
 それが完全に初期化されるまでどんな他のスレッドも格納されたオブジェクトにアクセスするのを防がないかぎり、非常に深刻なマルチスレッドバグがあります。
 </p>
@@ -3472,7 +3598,7 @@ synchronized() {
 
 <p>
 このメソッドは、フィールドの同時更新に対して同期化でガードしようとしています。しかし、フィールドをガードするとフィールドではなく、フィールドが参照するオブジェクトのロックを獲得します。
-これはあなたが必要とする相互排除を提供しないかもしれません。
+これはあなたが必要とする相互排除ができないかもしれません。
 他のスレッドは (他の目的のための) 参照されたオブジェクトのロックを獲得するかもしれません。<br>
 このパターンの例は以下のようになります。
 </p>
@@ -3494,7 +3620,7 @@ private Long getNotificationSequenceNumber() {
 
 <p>
 このメソッドは、可変フィールドから参照されたオブジェクトで同期化しています。
-異なるスレッドが異なるオブジェクトで同期化しているかもしれないので、これは有効な意味を持っている可能性が低いです。
+異なるスレッドが異なるオブジェクトで同期化しているかもしれないので、有用な意味を持っている可能性が低いです。
 </p>
 
     
@@ -3503,8 +3629,8 @@ private Long getNotificationSequenceNumber() {
 
 <p>
 Web サーバは、一般的にサーブレットや JSP クラスのインスタンスを1つだけ作成します (すなわち、シングルトンとして扱います)。
-複数のスレッドが複数同時に発生するリクエストを処理するためにインスタンスのメソッドを呼び出します。
-したがって、可変インスタンスフィールドは一般に競合状態を作成します。
+複数のスレッドが複数同時のリクエストに応えるためにそのインスタンスでメソッドを呼び出します。
+したがって、一般に可変インスタンスフィールドは競合状態を作ります。
 </p>
 
     
@@ -3531,8 +3657,8 @@ Web サーバは、一般的にサーブレットや JSP クラスのインス�
 
 <p>
 <code>notify</code> メソッドまたは <code>notifyAll</code> メソッドへの呼び出しは可変オブジェクト状態にどんな (明らかな) 付随的な変更ももたらされませんでした。
-一般に、別のスレッドが期待しているいくつかの条件が真になったので、モニタで <code>notify</code> メソッドが呼び出されます。
-しかしながら、意味がある条件のために、両方のスレッドに見えるヒープオブジェクトを含まなければなりません。
+一般的に別のスレッドが期待しているいくつかの条件が真になったので、モニタで <code>notify</code> メソッドが呼び出されます。
+しかしながら、意味がある条件のために両方のスレッドに見えるヒープオブジェクトを含まなければなりません。
 </p>
 <p>
 可変オブジェクトの状態変更が通知があるメソッドを呼び出したメソッドで起こったかもしれないので、このバグが必ずしもエラーを示すというわけではありません。
@@ -3574,9 +3700,9 @@ null のフィールドを同期化すると NullPointerException がスロー�
 
 
 <p>
-<code>putIfAbsent</code> メソッドは、一般に1つの値が与えられたキー (非存在が成功するかどうかの第一の値) と関連することを確認するために使われます。
+<code>putIfAbsent</code> メソッドは、1つの値が与えられたキー (非存在が成功するかどうかの第一の値) と関連することを確認するために使われます。
 戻り値を無視して中で渡される値への参照を保持するなら、マップのキーと関連する1つではない値を保持する危険性を冒します。
-どれを使用するかが重要であり、マップに格納できないものを使用すると、プログラムは誤った振る舞いをします。
+どれを使用するかが重要であり、マップに格納できないものを使うとプログラムは誤った振る舞いをします。
 </p>
 
     
@@ -3585,7 +3711,7 @@ null のフィールドを同期化すると NullPointerException がスロー�
 
 <p>
 このメソッドは、スレッドで 明示的に <code>run</code> メソッドを呼び出しています。
-一般に、クラスは新しいスレッドで自己の <code>run</code> メソッドを呼び出してもらうために <code>Runnable</code> インタフェースを実装します。
+一般的にクラスは新しいスレッドで自己の <code>run</code> メソッドを呼び出してもらうために <code>Runnable</code> インタフェースを実装します。
 その場合は、<code>Thread.start()</code> を呼び出すのが正しいです。
 </p>
 
@@ -3595,7 +3721,7 @@ null のフィールドを同期化すると NullPointerException がスロー�
 
 <p>
 コンストラクタがスレッドを開始しています。クラスが拡張され、サブクラスが作られるなら間違っていそうです。
-なぜなら、サブクラスのコンストラクタでスレッドが開始される前に、スーパークラスのスレッドが開始してしまうためです。
+なぜなら、サブクラスのコンストラクタでスレッドが開始される前にスーパークラスのスレッドが開始されてしまうためです。
 </p>
 
     
@@ -3624,7 +3750,7 @@ null のフィールドを同期化すると NullPointerException がスロー�
 
 
 <p>
-JavaDoc に書かれているように、DateFormat はマルチスレッドでの使用は本質的に安全ではありません。
+JavaDoc に書かれているように DateFormat はマルチスレッドでの使用は本質的に安全ではありません。
 ディテクタは、static フィールドから得られた DateFormat のインスタンスの呼び出しを発見しました。
 これは疑わしく見えます。
 詳細については、<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6231579">Sun Bug #6231579</a> や <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6178997">Sun Bug #6178997</a> を参照してください。
@@ -3638,7 +3764,7 @@ JavaDoc に書かれているように、DateFormat はマルチスレッドで�
 たとえ JavaDoc にそれに関する手がかりがないとしても、Calendar はマルチスレッドでの使用は本質的に安全でありません。
 正しい同期化をしないでスレッド境界の向こうで1つのインスタンスを共有することは、アプリケーションの誤動作になります。
 JDK 5.0に比べて JDK 1.4 のほうが問題が表面化するように思われ、おそらく sun.util.calendar.BaseCalendar.getCalendarDateFromFixedDate() の ArrayIndexOutOfBoundsExceptions や IndexOutOfBoundsExceptions がランダムに発生します。
-直列化問題も経験するかもしれません。インスタンスフィールドを使うことを推奨します。<br>
+直列化問題も経験するかもしれません。インスタンスフィールドを使用することを推奨します。<br>
 詳細については、<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6231579">Sun Bug #6231579</a> や <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6178997">Sun Bug #6178997</a> を参照してください。
 </p>
 
@@ -3647,10 +3773,10 @@ JDK 5.0に比べて JDK 1.4 のほうが問題が表面化するように思わ�
 
 
 <p>
-JavaDoc に書かれているように、DateFormat はマルチスレッドでの使用は本質的に安全ではありません。
+JavaDoc に書かれているように DateFormat はマルチスレッドでの使用は本質的に安全ではありません。
 正しい同期化をしないでスレッド境界の向こうで1つのインスタンスを共有することは、アプリケーションの誤動作になります。
 JDK 5.0に比べて JDK 1.4 のほうが問題が表面化するように思われ、おそらく sun.util.calendar.BaseCalendar.getCalendarDateFromFixedDate() の ArrayIndexOutOfBoundsExceptions や IndexOutOfBoundsExceptions がランダムに発生します。
-直列化問題も経験するかもしれません。インスタンスフィールドを使うことを推奨します。<br>
+直列化問題も経験するかもしれません。インスタンスフィールドを使用することを推奨します。<br>
 詳細については、<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6231579">Sun Bug #6231579</a> や <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6178997">Sun Bug #6178997</a> を参照してください。
 </p>
 
@@ -3660,7 +3786,7 @@ JDK 5.0に比べて JDK 1.4 のほうが問題が表面化するように思わ�
 
 <p>
 このメソッドは、ロックを保持して、<code>Thread.sleep()</code> を呼び出しています。
-他のスレッドがロックを獲得するために待機しているかもしれないので、ひどい性能とスケーラビリティ、またはデッドロックになるかもしれません。
+他のスレッドがロックを獲得するために待機しているかもしれないので、ひどい性能とスケーラビリティ、またはデッドロックの原因になるかもしれません。
 ロックで <code>wait</code> メソッドを呼び出すことはかなり良い考えで、ロックを解除して他のスレッドが実行するのを許可します。
 </p>
 
@@ -3669,7 +3795,7 @@ JDK 5.0に比べて JDK 1.4 のほうが問題が表面化するように思わ�
 
 
 <p>
-2つ以上のロックを保持して、モニタで待機させるとデッドロックの原因になる場合があります。
+2つ以上のロックを保持して、モニタで待機させるとデッドロックを引き起こすことがあります。
 <code>wait</code> メソッドを呼び出すと、待機しているオブジェクトのロックを解除するだけで、その他のロックは解除しません。
 これは必ずしもバグではありませんが厳密に調べる価値があります。
 </p>
@@ -3680,7 +3806,7 @@ JDK 5.0に比べて JDK 1.4 のほうが問題が表面化するように思わ�
 
 <p>
 このクラスには類似した名前の get メソッドと set メソッドがあり、set メソッドは同期化していて、get メソッドは同期化していません。
-get メソッドの呼び出し元がオブジェクトの一貫した状態を必ずしも見るというわけではないので、実行時に間違った振る舞いになるかもしれません。
+get メソッドの呼び出し元がオブジェクトの一貫した状態を必ずしも見るというわけではないので、実行時に間違った振る舞いの原因になることがあります。
 get メソッドは同期化するべきです。
 </p>
 
@@ -3690,7 +3816,7 @@ get メソッドは同期化するべきです。
 
 <p>
 このメソッドは、JSR-166(<code>java.util.concurrent</code>) のロックを獲得していますが、メソッドからのすべての経路で解除していません。
-一般に、JSR-166のロックを使用するための正しいイディオムは以下のようになります。
+一般的に JSR-166のロックを使用するための正しいイディオムは以下のようになります。
 </p>
 <blockquote><pre>
 Lock l = ...;
@@ -3708,7 +3834,7 @@ try {
 
 <p>
 このメソッドは、JSR-166(<code>java.util.concurrent</code>) のロックを獲得していますが、メソッドからのすべての例外経路で解除していません。
-一般に、JSR-166のロックを使用するための正しいイディオムは以下のようになります。
+一般的に JSR-166のロックを使用するための正しいイディオムは以下のようになります。
 </p>
 <blockquote><pre>
 Lock l = ...;
@@ -3726,7 +3852,7 @@ try {
 
 <p>
 このメソッドには条件制御フローによってガードされない <code>java.lang.Object.wait()</code> の呼び出しがあります。
-このコードは、<code>wait</code> メソッドを呼び出す前に待機するつもりだった条件がすでに満たされていないことを確かめるべきです。
+このコードは、<code>wait</code> メソッドを呼び出す前に待機するつもりだった条件が既に満たされていないことを確かめるべきです。
 どんな前の通知も無視されます。
 </p>
 
@@ -3820,7 +3946,7 @@ Jason Mehrens によって寄贈されたバグパターン
 
 <p>
 プリミティブ値がボクシングされて、すぐにアンボクシングされます。
-おそらくアンボクシングされた値が必要な場所で、手動でボクシングをしているためです。
+おそらくアンボクシングされた値が必要な場所で手動でボクシングをしているためです。
 その結果、コンパイラにボクシングの機能を取り消すことを強制しています。
 </p>
 
@@ -3834,11 +3960,31 @@ Jason Mehrens によって寄贈されたバグパターン
 </p>
 
     
+<h3><a name="BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR">Bx: プリミティブ値が3項演算子のためにアンボクシングされて、型変換される (BX_UNBOXED_AND_COERCED_FOR_TERNARY_OPERATOR)</a></h3>
+
+
+<p>
+ラップされたプリミティブ値は、3項演算子 (<code> b ? e1 : e2</code>) の評価の一部として、別のプリミティブ型にアンボクシングされて変換されます。
+Java 言語仕様では、<code>e1</code> と <code>e2</code> がラップされた数値なら値はアンボクシングされ、共通の型へと変換/型変換されます
+(たとえば、<code>e1</code> が <code>Integer</code> で、<code>e2</code> が <code>Float</code> なら <code>e1</code> はアンボクシング (<code>int</code> に変換) され、<code>float</code> に変換され、ボクシング (<code>Float</code> に変換) されます)。
+JLS セクション15.25を参照してください。
+</p>
+
+    
 <h3><a name="BX_UNBOXING_IMMEDIATELY_REBOXED">Bx: ボクシングされた値がアンボクシングされて、すぐに再ボクシングされる (BX_UNBOXING_IMMEDIATELY_REBOXED)</a></h3>
 
 
 <p>
 ボクシングされた値がアンボクシングされて、すぐに再ボクシングされます。
+</p>
+
+    
+<h3><a name="DM_BOXED_PRIMITIVE_FOR_COMPARE">Bx: プリミティブが比較でボクシングされている (DM_BOXED_PRIMITIVE_FOR_COMPARE)</a></h3>
+
+
+<p>
+ボクシングされたプリミティブが単に compareTo メソッドを呼び出すために作られています。
+直接プリミティブで働く static compare メソッド (double と　float は Java 1.4から、他のプリミティブ型は Java 1.7から) を使うほうがより効率的です。
 </p>
 
     
@@ -3855,7 +4001,7 @@ static parseXXX メソッドを呼び出す方が効率的です。
 
 
 <p>
-<code>toString</code> メソッドを呼び出すために、プリミティブ型のラッパクラスのインスタンスを作成しています。
+<code>toString</code> メソッドを呼び出すためにプリミティブ型のラッパクラスのインスタンスを作成しています。
 それよりもプリミティブ値を引数にとる static な <code>toString</code> メソッドを使用したほうが効率的です。
 </p>
 <table>
@@ -3876,7 +4022,7 @@ static parseXXX メソッドを呼び出す方が効率的です。
 <p>
 <code>new Double(double)</code> の使用は、常に新しいブジェクトになることが保証されています。
 これに対して、<code>Double.valueOf(double)</code> は、コンパイラ、クラスライブラリ、Java 仮想マシンで値がキャッシュされます。
-キャッシュに格納された値を使うことはインスタンス生成を回避し、コードはより高速になります。
+キャッシュに格納された値を使用することはインスタンス生成を回避し、コードはより高速になります。
 </p>
 <p>
 クラスが J2SE 5.0より前の Java 仮想マシンとの互換性が不要なら、オートボクシングか <code>Double</code>、<code>Float</code> の <code>valueOf</code> メソッドを使用してください。
@@ -3889,7 +4035,7 @@ static parseXXX メソッドを呼び出す方が効率的です。
 <p>
 <code>new Integer(int)</code> の使用は、常に新しいブジェクトになることが保証されています。
 これに対して、<code>Integer.valueOf(int)</code> は、コンパイラ、クラスライブラリ、Java 仮想マシンで値がキャッシュされます。
-キャッシュに格納された値を使うことはインスタンスの作成を回避し、コードはより高速になります。
+キャッシュに格納された値を使用することはインスタンスの作成を回避し、コードはより高速になります。
 </p>
 <p>
 -128から127までの値は対応するキャッシュされたインスタンスを持つことが保証されています。
@@ -3907,18 +4053,18 @@ static parseXXX メソッドを呼び出す方が効率的です。
 <p>
 URL の <code>equals</code> メソッドと <code>hashCode</code> メソッドは、ドメイン名の解決を行うので、ひどい性能になる可能性があります。<br>
 詳細は、<a href="http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html">http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html</a> を参照してください。<br>
-その代わりに <code>java.net.URI</code> を使うことを検討してください。
+その代わりに <code>java.net.URI</code> を使用することを検討してください。
 </p>
 
     
-<h3><a name="DMI_COLLECTION_OF_URLS">Dm: URL の Map や Set はひどい性能になる可能性がある (DMI_COLLECTION_OF_URLS)</a></h3>
+<h3><a name="DMI_COLLECTION_OF_URLS">Dm: URL の Map や Set はひどい性能になる (DMI_COLLECTION_OF_URLS)</a></h3>
 
 
 <p>
 このメソッドまたはフィールドは、URL の <code>Map</code> か <code>Set</code> を使用しています。
-URL の <code>equals</code> と <code>hashCode</code> は、ドメイン名の解決を行うので、ひどい性能になる可能性があります。<br>
+URL の <code>equals</code> と <code>hashCode</code> は、ドメイン名の解決を行うので、ひどい性能になります。<br>
 詳細は、<a href="http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html">http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html</a> を参照してください。<br>
-その代わりに <code>java.net.URI</code> を使うことをを検討してください。
+その代わりに <code>java.net.URI</code> を使用することを検討してください。
 </p>
 
     
@@ -3927,8 +4073,8 @@ URL の <code>equals</code> と <code>hashCode</code> は、ドメイン名の�
 
 <p>
 <code>java.lang.Boolean</code> の新しいインスタンスを作成するとメモリを浪費します。
-<code>Boolean</code> オブジェクトは不変で、2つの有効な値 (<code>Boolean.TRUE</code> と <code>Boolean.FALSE</code>) があります。
-その代わりに <code>Boolean</code> オブジェクトを作成するために、<code>Boolean.valueOf</code> メソッド (または J2SE 5.0 のオートボクシング) を使用してください。
+<code>Boolean</code> オブジェクトは不変で、2つの有用な値 (<code>Boolean.TRUE</code> と <code>Boolean.FALSE</code>) があります。
+その代わりに <code>Boolean.valueOf</code> メソッド (または J2SE 5.0 のオートボクシング) を使用して <code>Boolean</code> オブジェクトを作成してください。
 </p>
 
     
@@ -3940,7 +4086,7 @@ URL の <code>equals</code> と <code>hashCode</code> は、ドメイン名の�
 </p>
 <p>
 過去に、<code>close</code> メソッドや <code>finalize</code> メソッドでガベージコレクタを明示的に呼び出していた状況は、巨大なパフォーマンスブラックホールの原因となりました。
-ガベージコレクションは、高くつく可能性があります。何百、何千ものガベージコレクションを強制する状況は、システムの停滞をもたらすでしょう。
+ガベージコレクションは高くつきます。何百、何千ものガベージコレクションを強制する状況は、システムの停滞をもたらすでしょう。
 </p>
 
     
@@ -3948,7 +4094,7 @@ URL の <code>equals</code> と <code>hashCode</code> は、ドメイン名の�
 
 
 <p>
-メソッドは、クラスオブジェクトを得るために、インスタンスを生成して <code>getClass</code> メソッドを呼び出しています。
+メソッドは、クラスオブジェクトを得るためにインスタンスを生成して <code>getClass</code> メソッドを呼び出しています。
 クラスリテラル (<code>Foo.class</code>) を使うほうが簡単です。
 </p>
 
@@ -4007,35 +4153,6 @@ JDK はこのバグを解決してサイズを1MB減らすことができまし�
 </p>
 
     
-<h3><a name="IIO_INEFFICIENT_INDEX_OF">IIO: String.indexOf(String) の非効率的な使用 (IIO_INEFFICIENT_INDEX_OF)</a></h3>
-
-
-<p>
-このコードは、String.indexOf() に長さ1の文字列定数を渡しています。String.indexOf() の整数実装を使うほうが効率的です。
-たとえば、<code>myString.indexOf(".")　の代わりに <code>myString.indexOf('.')</code> を呼び出します。</code>
-</p>
-
-    
-<h3><a name="IIO_INEFFICIENT_LAST_INDEX_OF">IIO: String.lastIndexOf(String)　の非効率的な使用 (IIO_INEFFICIENT_LAST_INDEX_OF)</a></h3>
-
-
-<p>
-このコードは、String.lastIndexOf() に長さ1の文字列定数を渡しています。String.lastIndexOf() の整数実装を使うほうが効率的です。
-たとえば、<code>myString.lastIndexOf(".")　の代わりに <code>myString.lastIndexOf('.')</code> を呼び出します。</code>
-</p>
-
-    
-<h3><a name="ITA_INEFFICIENT_TO_ARRAY">ITA: 長さが0の配列の引数で toArray メソッドを使用しているメソッド (ITA_INEFFICIENT_TO_ARRAY)</a></h3>
-
-
-<p>
-このメソッドは、Collection 派生クラスの </code>toArray</code> メソッドを使用して長さが0の配列の引数を渡しています。
-<code>myCollection.toArray(new Foo[myCollection.size()])</code> を使用するほうがより効率的です。
-渡される配列がコレクションの要素のすべてを格納できるくらいの大きさなら、データが読み込まれて、そのまま返されます。
-これは、結果として返す2番目の配列 (リフレクションによって) を作成する必要を回避します。
-</p>
-
-    
 <h3><a name="SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC: ループの中で + を使用して文字列を連結しているメソッド (SBSC_USE_STRINGBUFFER_CONCATENATION)</a></h3>
 
 
@@ -4045,7 +4162,7 @@ JDK はこのバグを解決してサイズを1MB減らすことができまし�
 各々の繰り返しで文字列が再コピーされ、増大すると繰り返しの数で二次コストの原因になる可能性があります。
 </p>
 <p>
-明示的に、<code>StringBuffer</code> (または J2SE 5.0の <code>StringBuilder</code>) を使うことで、より良い性能を得られるかもしれません。
+<code>StringBuffer</code> (または J2SE 5.0の <code>StringBuilder</code>) を明示的に使うとより良い性能を得られます。
 </p>
 <p>
 たとえば、
@@ -4071,7 +4188,7 @@ String s = buf.toString();
 
 <p>
 このクラスは内部クラスなのにそれを作成したオブジェクトへの埋め込まれた参照を使用していません。
-この参照はより大きなクラスのインスタンスを作成して、必要以上に長い間作成オブジェクトへの参照を存続しておくかもしれません。
+この参照はより大きなクラスのインスタンスを作成して、必要以上に作成オブジェクトへの参照を存続しておくことがあります。
 できれば、クラスは static にすべきです。
 </p>
 
@@ -4081,7 +4198,7 @@ String s = buf.toString();
 
 <p>
 このクラスは内部クラスなのにそれを作成したオブジェクトへの埋め込まれた参照を使用していません。
-この参照はより大きなクラスのインスタンスを作成して、必要以上に長く作成オブジェクトへの参照を存続しておくかもしれません。
+この参照はより大きなクラスのインスタンスを作成して、必要以上に作成オブジェクトへの参照を存続しておくことがあります。
 できれば、クラスは static 内部クラスにすべきです。
 無名内部クラスは static にできないので、名前付き内部クラスにリファクタリングする必要があります。
 </p>
@@ -4112,7 +4229,7 @@ static フィールドにすることを検討してください。
 
 <p>
 このメソッドは、定数値で <code>java.lang.Math</code> の static メソッドを呼び出しています。
-このメソッドの結果は、静的に確定している可能性があり、より高速で、ときには定数を使用するほうがより正確です。<br>
+このメソッドの結果は静的に判定でき、より高速で、ときには定数を使用するほうがより正確です。<br>
 検出されるメソッドは、以下のとおりです。 
 </p>
 <table>
@@ -4300,12 +4417,12 @@ FindBugs が何かを発見したならほぼ間違いなく FindBugs が報告�
 </p>
 
     
-<h3><a name="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE">SQL: SQL の Statement の  execute メソッドに定数でない文字列を渡している (SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE)</a></h3>
+<h3><a name="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE">SQL: SQL の Statement の  execute または addBatch メソッドに定数でない文字列を渡している (SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE)</a></h3>
 
 
 <p>
-このメソッドは、動的に生成されるように思われる文字列で、 SQL の <code>Statement</code> の <code>execute</code> メソッドを呼び出しています。
-その代わりに <code>PreparedStatement</code> を使うことを検討してください。
+このメソッドは、動的に生成されるように思われる文字列で、 SQL 文 の <code>execute</code> または <code>addBatch</code> メソッドを呼び出しています。
+その代わりに <code>PreparedStatement</code> を使用することを検討してください。
 効率的で、SQL インジェクション攻撃に強いです。
 </p>
 
@@ -4315,7 +4432,7 @@ FindBugs が何かを発見したならほぼ間違いなく FindBugs が報告�
 
 <p>
 このコードは、定数でない文字列から SQL の <code>PreparedStatement</code> を作成しています。
-ユーザからのチェックされていない汚染されたデータがこの文字列を作る際に使われるなら、PreparedStatement で予想外で望ましくない何かをするために SQL インジェクションが使われる可能性があります。
+ユーザからのチェックされていない汚染されたデータがこの文字列を作る際に使われるなら、<code>PreparedStatement</code> で予想外で望ましくない何かをするために SQL インジェクションが使われる可能性があります。
 </p>
 
     
@@ -4367,7 +4484,7 @@ XSS を心配するなら、商用の静的解析ツールかペネトレーシ�
 
 <p>
 このコードは、Collection を抽象コレクションにキャストしています (たとえば <code>List</code>、<code>Set</code>、<code>Map</code>)。
-オブジェクトがキャストする型であると保証されることを確認してください。
+オブジェクトがキャストする型であるということが保証されていることを確認してください。
 必要とするコレクションの反復処理ができるなら Set または List にキャストする必要はありません。
 </p>
 
@@ -4378,7 +4495,7 @@ XSS を心配するなら、商用の静的解析ツールかペネトレーシ�
 <p>
 このコードは抽象コレクション (たとえば、Collection、List、Set) を特定の具象実装 (たとえば、ArrayList、HashSet) にキャストしています。
 これは正しくないかもしれません。そして、将来の時点で他の具象実装への切り替えをとても困難にするので、脆弱なコードになるかもしれません。
-そうするために特別な理由がないかぎり抽象コレクションクラスを使用してください。
+そうするための特別な理由がないかぎり抽象コレクションクラスを使用してください。
 </p>
 
     
@@ -4386,7 +4503,7 @@ XSS を心配するなら、商用の静的解析ツールかペネトレーシ�
 
 
 <p>
-このキャストはチェックされていません。すべての型のインスタンスがキャストした型にキャストできるというわけではありません。
+このキャストはチェックされていません。すべての型のインスタンスをキャストする型へキャストできるわけではありません。
 プログラムのロジックがこのキャストが失敗しないことを確実に確認してください。  
 </p>
 
@@ -4416,7 +4533,7 @@ XSS を心配するなら、商用の静的解析ツールかペネトレーシ�
 
 <p>
 このコードは、符号なしキャストの実行結果を short または byte にキャストしています。結果の上位ビットは捨てられます。
-上位ビットが捨てられるので、符号付き、符号なし右シフトの (シフトのサイズによって) 違いがないかもしれません。
+上位ビットが捨てられるので、符号付きと符号なし右シフト (シフトのサイズによって) との違いがないかもしれません。
 </p>
 
     
@@ -4443,7 +4560,7 @@ XSS を心配するなら、商用の静的解析ツールかペネトレーシ�
 
 <p>
 このメソッドは、switch 文の2つの case を実装するために同じコードを使用しています。
-複製コードの case かもしれないしコーディングミスかもしれません。
+複製コードの case かもしれないし、コーディングミスかもしれません。
 </p>
 
     
@@ -4474,7 +4591,7 @@ FindBugs は、バイトコードベースのツールなので誤検出をな�
 
 <p>
 このコードはローカル変数に null を代入していますが代入された値は読み出されていません。
-この代入はガベージコレクタを手伝うために導入されたのかもしれませんが、Java SE 6 ではもはや必要とされないか有効ではありません。
+この代入はガベージコレクタを手伝うために導入されたのかもしれませんが、Java SE 6 ではもはや必要とされないか有用ではありません。
 </p>
 
     
@@ -4518,7 +4635,7 @@ FindBugs は、バイトコードベースのツールなので誤検出をな�
 
 <p>
 Threadオブジェクトが Runnable が期待されているメソッドへのパラメータとして渡されています。
-これはかなり異常で、論理エラーを示すか、予想外の振る舞いの原因になるかもしれません。
+これはかなり異常で、論理エラーを示すか、予想外の振る舞いの原因になることがあります。
 </p>
 
     
@@ -4529,7 +4646,7 @@ Threadオブジェクトが Runnable が期待されているメソッドへの�
 このクラスは、<code>equals</code> メソッドを定義しているクラスを拡張してフィールドを追加していますが、<code>equals</code> メソッドを定義していません。
 したがって、このクラスのインスタンスの等価性は、サブクラスと追加されたフィールドの同一性を無視します。
 これが意図したことで、しかも、<code>equals</code> メソッドをオーバーライドする必要がないことを確実にしてください。
-たとえ <code>equals</code> メソッドをオーバーライドする必要がないとしても、サブクラスのための <code>equals</code> メソッドが <code>super.equals(o)</code> を呼び出して結果を返すという事実を実証するために、いずれにしろ、<code>equals</code> メソッドをオーバーライドすることを検討してください。
+たとえ <code>equals</code> メソッドをオーバーライドする必要がないとしても、サブクラスのための <code>equals</code> メソッドが <code>super.equals(o)</code> を呼び出して結果を返すという事実を実証するためにいずれにしろ、<code>equals</code> メソッドをオーバーライドすることを検討してください。
 </p>
 
     
@@ -4537,7 +4654,7 @@ Threadオブジェクトが Runnable が期待されているメソッドへの�
 
 
 <p>
-このクラスの <code>equals</code> メソッドは、引数の型が <code>this</code> オブジェクトの型と互換性があるこをチェックするために、我々が認識しているパターンで何もしていません。
+このクラスの <code>equals</code> メソッドは、引数の型が <code>this</code> オブジェクトの型と互換性があるこをチェックするために我々が認識しているパターンで何もしていません。
 このコードは何も間違っていないかもしれませんが、レビューする価値があります。
 </p>
 
@@ -4548,7 +4665,7 @@ Threadオブジェクトが Runnable が期待されているメソッドへの�
 <p>
 この演算は、等価性のために2つの浮動小数点値を比較しています。
 浮動小数点の計算は丸めを伴うかもしれないので計算された float と double の値は正確ではないかもしれません。
-通貨のような正確でなければならない値のために、<code>BigDecimal</code> のような固定精度型を使うことを検討してください。
+通貨のような正確でなければならない値のために <code>BigDecimal</code> のような固定精度型を使用することを検討してください。
 正確である必要がない値のためにいくつかの範囲の中で等価性のために比較することを検討してください。
 たとえば、<code>if (Math.abs(x - y) &lt; .0000001)</code>。<br>
 詳細は Java 言語仕様4.2.4を参照してください。
@@ -4571,7 +4688,7 @@ Boolean 型でない引数を %b 書式指示子でフォーマットしてい�
 <p>
 内部クラスは、継承されたメソッドか外部クラスで定義されたメソッドなのかどちらとも解釈できるメソッドを呼び出しています。
 たとえば、<code>foo(17)</code> を呼び出します。それはスーパークラスと外部のメソッドの両方で定義されています。
-Java のセマンティックスでは、継承したメソッドを呼び出しますが、これは意図したことではないかもしれません。
+Java のセマンティックスでは、継承したメソッドを呼び出しますが、これはあなたが意図したことではないかもしれません。
 </p>
 <p>
 本当に継承されたメソッドを呼び出すつもりなら super を付けて (例：super.foo(17)) 呼び出してください。
@@ -4589,7 +4706,7 @@ Java のセマンティックスでは、継承したメソッドを呼び出し
 
 <p>
 バグインスタンスによって参照される2つのクラスのスタティックイニシャライザで循環が検出されました。
-多くの種類の予想外の振る舞いは、そのような循環に起因するかもしれません。
+さまざまな予想外の振る舞いはそのような循環に起因することがあります。
 </p>
 
     
@@ -4650,7 +4767,7 @@ long convertDaysToMilliseconds(int days) { return days * MILLISECONDS_PER_DAY; }
 </p>
 <p>
 このバグは、二分探索とマージソートの多くの以前の実装で存在します。
-Martin Buchholz が <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6412541">JDK ライブラリでバグを発見し、修正しています</a>。
+Martin Buchholz が <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6412541">JDK ライブラリのバグを発見して修正しています</a>。
 Joshua Bloch が <a href="http://googleresearch.blogspot.com/2006/06/extra-extra-read-all-about-it-nearly.html">バグパターンとして公表しました</a>。
 </p>
 
@@ -4660,7 +4777,7 @@ Joshua Bloch が <a href="http://googleresearch.blogspot.com/2006/06/extra-extra
 
 <p>
 このコードは、<code>x % 2 == 1</code> を使用して値が負数なのか確かめていますが、負数 (たとえば、<code>(-5) % 2 == -1</code>) なので機能しません。
-奇数チェックを意図しているなら、<code>x &amp; 1 == 1</code> または <code>x % 2 != 0</code> を使うことを検討してください。
+奇数チェックを意図しているなら、<code>x &amp; 1 == 1</code> または <code>x % 2 != 0</code> を使用することを検討してください。
 </p>
 
     
@@ -4677,7 +4794,7 @@ Joshua Bloch が <a href="http://googleresearch.blogspot.com/2006/06/extra-extra
 
 
 <p>
-これはどんな有効な働きもしない整数ビット演算 (AND、OR、XOR) です (たとえば <code>v & 0xffffffff</code>)。
+どんな有用な仕事もしない整数ビット演算 (AND、OR、XOR) です (たとえば <code>v & 0xffffffff</code>)。
 </p>
 
     
@@ -4695,7 +4812,7 @@ Joshua Bloch が <a href="http://googleresearch.blogspot.com/2006/06/extra-extra
 <p>
 Servletクラスを拡張したクラスで、インスタンス変数を使用しています。
 Servlet クラスの1つのインスタンスだけが Java EE フレームワークによって作成され、マルチスレッドによって使われるので、このパラダイムは極めて問題があり、推奨できません。
-ローカル変数を使うことだけを検討してください。
+ローカル変数を使用することだけを検討してください。
 </p>
 
     
@@ -4705,7 +4822,7 @@ Servlet クラスの1つのインスタンスだけが Java EE フレームワ�
 <p>
 Struts Action クラスを拡張したクラスで、インスタンス変数を使用しています。
 Struts Action クラスの1つのインスタンスだけが Struts フレームワークによって作成され、マルチスレッドによって使われるので、このパラダイムは極めて問題があり、推奨できません。
-ローカル変数を使うことだけを検討してください。
+ローカル変数を使用することだけを検討してください。
 モニタを除いて書き込まれるインスタンスフィールドだけが報告されます。
 </p>
 
@@ -4733,7 +4850,7 @@ Struts Action クラスの1つのインスタンスだけが Struts フレーム
 
 <p>
 ここで参照されている変数は、以前に null なのかチェックしているため  null であることがわかっています。
-これは有効かもしれないが、間違いかもしれません (多分異なる変数を参照することを意図してました、あるいは以前の null チェックで  null でないのか確かめるべきでした)。
+これは有効ですが、間違いかもしれません (多分異なる変数を参照することを意図してました、または以前の null チェックで  null でないのか確かめるべきでした)。
 </p>
 
     
@@ -4762,7 +4879,7 @@ Struts Action クラスの1つのインスタンスだけが Struts フレーム
 
 <p>
 メソッドからの戻り値を null チェックしないで利用しています。メソッドの戻り値は null なのかチェックするべきです。
-コードが実行されると NullPointerException が発生するかもしれません。
+コードが実行されると NullPointerException を引き起こすことがあります。
 </p>
 
     
@@ -4773,7 +4890,7 @@ Struts Action クラスの1つのインスタンスだけが Struts フレーム
 分岐または文が実行されるなら、null 値が利用されて NullPointerException が発生します。
 もちろん、問題は分岐または文が実行不可能で、NullPointerException が決して発生する可能性がないということかもしれません。
 それを決めるのは FindBugs の能力を超えています。
-この値がすでに null であることを検査したという事実からこれは明確な可能性です。
+この値が既に null であることを検査したという事実からこれは明確な可能性です。
 </p>
 
     
@@ -4801,7 +4918,7 @@ Struts Action クラスの1つのインスタンスだけが Struts フレーム
 <p>
 このコードは、短絡論理 (&amp;&amp; や ||) ではなく非短絡論理 (&amp; や |) を使用していると思われます。
 さらに、左辺値によって右辺を評価したくない (例外のスローや演算が高くつく副作用があるため) と思っているのかもしれません。
-非短絡論理は、左辺の結果がわかっていて推論できるときでも、両側の式が評価されます。
+非短絡論理は、左辺を知ることによって結果を推論できたとしても両側の式が評価されます。
 これは効率が悪く、右辺の評価でエラーが発生するケースを左辺でガードしているなら、結果としてエラーになる可能性があります。
 </p>
 <p>
@@ -4814,7 +4931,7 @@ Struts Action クラスの1つのインスタンスだけが Struts フレーム
 
 <p>
 このコードは、短絡論理 (&amp;&amp; や ||) ではなく非短絡論理 (&amp; や |) を使用していると思われます。
-非短絡論理は、左辺の結果がわかっていて推論できるときでも、両側の式が評価されます。
+非短絡論理は、左辺を知ることによって結果を推論できたとしても両側の式が評価されます。
 これは効率が悪く、右辺の評価でエラーが発生するケースを左辺でガードしているなら、結果としてエラーになる可能性があります。
 </p>
 <p>
@@ -4829,7 +4946,7 @@ Struts Action クラスの1つのインスタンスだけが Struts フレーム
 結果がないこと  (すなわち、結果の空のリスト) を示すために null 参照ではなく長さが0の配列 を返すことは、多くの場合より良い設計です。
 </p>
 <p>
-他方では、「この質問に対する答えがない」ことを示すために、null を使うことはおそらく適切です。
+他方では、「この質問に対する答えがない」ことを示すために null を使用することはおそらく適切です。
 たとえば、<code>File.listFiles()</code> は、ファイルがないディレクトリを与えられた場合は空のリストを返し、ファイルがディレクトリでないなら null を返します。
 </p>
 
@@ -4932,7 +5049,7 @@ try {
 
 <p>
 このコードは、ハッシュコードを計算して別の値を法とする剰余を計算しています。
-ハッシュコードが負かもしれないので、剰余演算の結果も負かもしれません。
+ハッシュコードは負になり、剰余演算の結果も負なります。
 </p>
 <p>
 計算結果が負ではないことを確認したいなら、コードを変更する必要があるかもしれません。
@@ -4947,7 +5064,7 @@ try {
 
 <p>
 このコードは符号付き整数の乱数を生成して別の値を法とする剰余を計算しています。
-乱数が負かもしれないので、剰余演算の結果も負かもしれません。これが意図したことであることを確実にしてください。
+乱数は負になり、剰余演算の結果も負になります。これが意図したことであることを確実にしてください。
 その代わりに <code>Random.nextInt(int)</code> の使用を強く検討してください。
 </p>
 
@@ -4964,7 +5081,33 @@ try {
 このメソッドの戻り値を無視することが重要であるか許容できるかどうかに関して、FindBugs に指示する @CheckReturnValue アノテーションが使えます。
 </p>
 <p>
-戻り値を無視することが間違いではないか決めるために、厳密に調査してください。
+戻り値を無視することが間違いではないか決めるために厳密に調査してください。
+</p>
+
+    
+<h3><a name="RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT">RV: 副作用がないメソッドの戻り値は無視される (RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT)</a></h3>
+
+
+<p>
+このコードは、メソッドを呼び出して戻り値を無視しています。
+しかしながら、解析はメソッド (もしあればサブクラスの実装も含む) が戻り値以外の効果をもたらさないことを示しています。
+この呼び出しは除去できます。
+</p>
+<p>
+我々は、できる限り誤検出を減らそうとしていますが、いくつかのケースではこの警告が間違っているかもしれません。
+よくある誤検出です。
+</p>
+<p>
+- メソッドは、オーバライドされ解析対象外の他のプロジェクトで副作用がもたらされるように設計されている
+<p>
+<p>
+- メソッドは、副作用をもたらすかもしれないクラスローダをトリガーするように呼び出されている
+</p>
+<p>
+- メソッドは、例外を取得するために呼び出されている
+</p>
+<p>
+我々の仮定が正しくないと感じるなら、FindBugs にこのメソッドの戻り値が無視されることを許容するように指示する @CheckReturnValue アノテーションを使用することができます。
 </p>
 
     
@@ -5027,7 +5170,7 @@ public void foo() {
 
 <p>
 このメソッドには1つの case が次の case へと通り抜ける switch 文があります。
-通常、break か return でこの case を終わらせる必要があります。
+通常は、break か return でこの case を終わらせる必要があります。
 </p>
 
     
@@ -5036,10 +5179,10 @@ public void foo() {
 
 <p>
 このメソッドにはdefault がない switch 文があります。
-通常、default を用意する必要があります。
+通常は、default を用意する必要があります。
 </p>
 <p>
-解析は生成されたバイトコードを見るだけなので、default が  switch 文の終わりにあって、break 文で終わらないならば、誤警告のトリガーとなります。
+解析は生成されたバイトコードを見るだけなので、default が  switch 文の終わりにあって、他のケースに break 文が含まれていないなら誤検出のトリガーとなります。
 </p>
 
     
@@ -5048,7 +5191,7 @@ public void foo() {
 
 <p>
 このインスタンスメソッドは、static フィールドに書き込みをしています。
-複数のインスタンスが操作されているなら、正しくさせるのは難しいです。一般的に間違ったプラクティスです。
+複数のインスタンスが操作されているなら、正しくさせるのは難しいです。一般的にバッドプラクティスです。
 </p>
 
     
@@ -5067,7 +5210,7 @@ public void foo() {
 
 <p>
 フィールドは、transient と宣言していますが、クラスは直列化可能ではないので、まったく効果がありません。
-クラスが transient だったときの名残かもしれません、あるいは直列化機構を誤解しているのかもしれません。 
+クラスが transient だったときの名残かもしれません、または直列化機構を誤解しているのかもしれません。 
 </p>
 
     
@@ -5088,6 +5231,68 @@ public void foo() {
 値は、型修飾子によって示された値でないことを必要とする方法で使われています。
 しかし、値はどこでその型修飾子がいるのか禁止されていのるかわからないと述べている明示的なアノテーションがあります。
 使い方かアノテーションのどちらかが間違っています。
+</p>
+
+    
+<h3><a name="UC_USELESS_CONDITION">UC: 条件は効果がない (UC_USELESS_CONDITION)</a></h3>
+
+
+<p>
+この条件は常に関係している変数の値が前に絞られたのと同じ結果を作り出します。
+おそらく何かほかのことを意味していたのか、あるいは条件を除去できます。
+</p>
+
+    
+<h3><a name="UC_USELESS_CONDITION_TYPE">UC: 条件は変数型のために効果がない (UC_USELESS_CONDITION_TYPE)</a></h3>
+
+
+<p>
+この条件は関係している変数の型範囲のために常に同じ結果を作り出します。
+おそらく何かほかのことを意味していたのか、あるいは条件を除去できます。
+</p>
+
+    
+<h3><a name="UC_USELESS_OBJECT">UC: 役に立たないオブジェクトを作成した (UC_USELESS_OBJECT)</a></h3>
+
+
+<p>
+我々の解析でオブジェクトが役に立たないことを示しています。
+作成され、変更されていますが、値はメソッドの外に出ないし、副作用をもたらしません。
+間違いかオブジェクトが使われることを意図していたかのどちらか、あるいは除去できます。
+</p>
+<p>
+この解析はめったに誤検出することはありません。よくある誤検出のケースです。
+</p>
+<p>- 暗黙のうちに曖昧な例外をスローした</p>
+<p>- コードを一般化してスタブとして使用された</p>
+<p>- 弱/ソフト参照オブジェクトへの強い参照を持っていた</p>
+
+    
+<h3><a name="UC_USELESS_OBJECT_STACK">UC: 役に立たないオブジェクトをスタックで作成した (UC_USELESS_OBJECT_STACK)</a></h3>
+
+
+<p>
+このオブジェクトは副作用を持たない修正を行うために作成されています。
+おそらく何かほかのことを意味していたのか、あるいはオブジェクトを除去できます。
+</p>
+
+    
+<h3><a name="UC_USELESS_VOID_METHOD">UC: 役に立たない空ではない void メソッド (UC_USELESS_VOID_METHOD)</a></h3>
+
+
+<p>
+我々の解析は、この空ではない void メソッドが実際に有用な仕事を行わないことを示しています。
+確認してください。おそらくそのコードが間違っているか、またはボディを完全に除去できます。
+</p>
+<p>
+我々はできる限り誤検出を減らそうと努力しているが、いくつかのケースでは警告は間違っているかもしれません。
+よくある誤検出例です。
+</p>
+<p>
+- メソッドは、副作用を持つかもしれないクラスのロードをトリガすることを意図している
+</p>
+<p>
+- メソッドは、暗黙のわかりにくい例外をスローするように意図されている
 </p>
 
     
@@ -5153,7 +5358,7 @@ if (argv.length == 1);
 
 <p>
 この public または protected フィールドは書き込まれていません。このフィールドからの読み出しはデフォルト値を返します。
-誤りをチェックしてください (フィールドは初期化するべきでしたか？)。使わないなら除去してください。
+誤りをチェックしてください (フィールドは初期化するべきでしたか？)。役に立たないなら除去してください。
 </p>
 
     
@@ -5162,7 +5367,7 @@ if (argv.length == 1);
 
 <p>
 このメソッドは、XMLインタフェースの特定の実装のインスタンスを作成しています。
-実装が実行時に変更できるように、これらのオブジェクトを作成するために提供されたファクトリクラスを使うことが望ましいです。<br>
+提供されたファクトリクラスを使用してオブジェクトを作成して実行時に実装を変更できるようにすることが望ましいです。<br>
 詳細は、以下を参照してください。
 </p>
 <ul>
@@ -5183,6 +5388,6 @@ document.write( "Last updated "+ document.lastModified + "." );
 </script> 
 <p> Send comments to <a class="sidebar" href="mailto:findbugs@cs.umd.edu">findbugs@cs.umd.edu</a> 
 <p> 
-<A href="http://sourceforge.net"><IMG src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A>
+<a href="http://sourceforge.net/projects/findbugs/"><img src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="FindBugs on SourceForge.net" /></a>
 </td></tr></table>
 </body></html>

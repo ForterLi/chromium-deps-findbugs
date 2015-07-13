@@ -1,11 +1,10 @@
 Name: FindBugs
 URL: http://findbugs.sourceforge.net/
 Description: FindBugs is a program to find bugs in Java programs.
-Version: 3.0.0
+Version: 3.0.1
 Security Critical: no
 License: LGPL 3
 License File: LICENSE
 
 Local Modifications:
-- Changed "#! /bin/sh" to "#!/bin/sh" in shell scripts to pass check_perms.
-- Set the svn:exeuctable bit correctly on bin/findbugs.bat and bin/findbugs.ico.
+- Set the svn:executable bit correctly on bin/findbugs.bat and bin/findbugs.ico.
