@@ -7,4 +7,5 @@ License: LGPL 3
 License File: LICENSE
 
 Local Modifications:
+- Added gn and gyp targets for lib/jFormatString.jar.
 - Set the svn:executable bit correctly on bin/findbugs.bat and bin/findbugs.ico.
