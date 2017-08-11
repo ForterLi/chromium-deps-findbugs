@@ -8,3 +8,7 @@ import("//build/config/android/rules.gni")
 java_prebuilt("format_string_java") {
   jar_path = "lib/jFormatString.jar"
 }
+
+java_prebuilt("jsr305_java") {
+  jar_path = "lib/jsr305.jar"
+}
